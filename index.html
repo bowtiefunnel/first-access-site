@@ -310,15 +310,15 @@ footer { padding-block: 28px; font-size: 12.5px; color: var(--muted) }
     <div class="wrap cg">
       <div>
         <p class="eyebrow">Your AI Concierge</p>
-        <h2 style="margin-top:14px">An AI Concierge built around <em>your services</em></h2>
-        <p class="lead">Tell it what you offer and what you recommend. Your Concierge handles the follow-up work you never have time for, using your services, your product picks and your voice.</p>
+        <h2 style="margin-top:14px">AI capabilities that matter, <em>and that you own</em></h2>
+        <p class="lead">Your Concierge learns your menu, your instructions and your voice. Everything it writes starts from what you give it, so it sounds like you and stays yours.</p>
         <ul>
-          <li><span><b>Finds the programs that pay</b>It finds affiliate programs for the brands you already recommend and drafts the applications.</span></li>
-          <li><span><b>Matches picks to each service</b>It suggests products for every service, timed to the client's recovery.</span></li>
-          <li><span><b>Flags what doesn't belong</b>It catches products that clash with a treatment before a client sees them.</span></li>
-          <li><span><b>Helps clients say it well</b>It turns a client's own answers into a review they edit and post.</span></li>
+          <li><span><b>Prepares every client</b>It writes prep and aftercare for each service on your menu, in your voice. You approve it once.</span></li>
+          <li><span><b>Answers when you can't</b>It answers client questions after hours from your own aftercare. Anything medical comes straight to you.</span></li>
+          <li><span><b>Recommends at the right moment</b>It matches products to each service and day of recovery, and never suggests one that clashes with the treatment.</span></li>
+          <li><span><b>Remembers every client</b>When a client is due, or has drifted, it drafts a personal note in your voice about their last visit.</span></li>
         </ul>
-        <p class="approve"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Nothing reaches a client or a program until you approve it.</p>
+        <p class="approve"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>It only uses what you've approved. Your instructions, your voice and your client list stay yours.</p>
       </div>
       <div class="panel" aria-label="Example: the AI Concierge working for a sample studio">
         <div class="panel-head"><b>AI Concierge</b><span class="live">Working for Company Med Spa</span></div>
@@ -448,7 +448,7 @@ footer { padding-block: 28px; font-size: 12.5px; color: var(--muted) }
         <ul>
           <li><b>Free until it earns you your first $99</b></li>
           <li>A client card for every booking</li>
-          <li>All modules, including both AI assistants</li>
+          <li>All modules, including your AI Concierge</li>
           <li>Your commissions are 100% yours</li>
           <li>Rate locked for as long as you stay</li>
         </ul>
@@ -569,14 +569,14 @@ render(0); play();
 
 // Concierge feed: tasks arrive one by one, then the loop restarts. Reduced motion shows them all at once.
 const TASKS = [
-  ['Found 3 programs', 'Brands you already recommend. Applications drafted in your voice.'],
-  ['Matched 4 picks to HydraFacial', 'Timed to days 1–7 of recovery.'],
-  ['Flagged a retinol serum', 'Clashes with Botox in the first 48 hours. Held back from cards.'],
-  ['Drafted a review for a client', 'Built only from the client\'s own answers.']
+  ['Wrote aftercare for HydraFacial', 'From your notes, in your voice.', 'Waiting for you'],
+  ['Answered a client at 9:40 PM', '"Can I work out today?" Answered from your aftercare.', 'Sent'],
+  ['Matched 4 picks to Botox', 'Timed to recovery. One retinol serum held back.', 'Waiting for you'],
+  ['Drafted a rebook note', 'Due in 14 days. Mentions their last visit.', 'Waiting for you']
 ];
 const feed = $('feed');
 // All four tasks render up front so the panel's height never changes; only their state animates.
-feed.innerHTML = TASKS.map(([t, d]) => `<div class="task"><div class="row"><b>${t}</b><span class="wait">Waiting for you</span></div><p>${d}</p></div>`).join('');
+feed.innerHTML = TASKS.map(([t, d, st]) => `<div class="task"><div class="row"><b>${t}</b><span class="wait">${st}</span></div><p>${d}</p></div>`).join('');
 const tasks = [...feed.children];
 if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
   let k = 0;
