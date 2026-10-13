@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="First Access turns client trust into new income for professional services: product commissions, add-ons, tips and on-time rebookings.">
+<meta property="og:title" content="Expand Your Trust | First Access">
+<style>[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Expand Your Trust</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap">
+<style>
+/* Layout: midnight hero with a live client card on a phone, then an alabaster
+   reading column; one CTA that always lands on the founding-studio form. */
+:root {
+  --midnight: #11115D; --obsidian: #0E1218; --gold: #D4AF37; --alabaster: #FBFBF2;
+  --bg: var(--alabaster); --fg: #16163a; --muted: #55566e; --line: #dcdace;
+  --panel: #ffffff; --btn-bg: var(--midnight); --btn-fg: var(--alabaster);
+  --hero-bg: var(--midnight); --hero-fg: var(--alabaster); --hero-muted: #c4c4dc;
+  --card-bg: var(--alabaster); --card-fg: #16163a; --card-muted: #66677d; --card-line: #e3e1d4;
+  --serif: "Cormorant Garamond", "Bodoni 72", Didot, Georgia, serif;
+  --sans: "Neue Haas Grotesk Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: var(--obsidian); --fg: var(--alabaster); --muted: #a9abbb; --line: #262b38;
+  --panel: #151a24; --btn-bg: var(--alabaster); --btn-fg: var(--midnight);
+  --hero-bg: #0b0b3d; --card-bg: #151a24; --card-fg: var(--alabaster); --card-muted: #a9abbb; --card-line: #2a3040;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: var(--obsidian); --fg: var(--alabaster); --muted: #a9abbb; --line: #262b38;
+  --panel: #151a24; --btn-bg: var(--alabaster); --btn-fg: var(--midnight);
+  --hero-bg: #0b0b3d; --card-bg: #151a24; --card-fg: var(--alabaster); --card-muted: #a9abbb; --card-line: #2a3040;
+  color-scheme: dark }
+
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--fg); font: 16px/1.6 var(--sans); margin: 0 }
+h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.1; text-wrap: balance; margin: 0 }
+p { margin: 0 }
+a { color: inherit }
+.wrap { max-width: 1120px; margin: 0 auto; padding-inline: 20px }
+.eyebrow { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); font-weight: 600 }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 26px;
+  border-radius: 999px; border: 0; background: var(--btn-bg); color: var(--btn-fg); font: 600 15px var(--sans);
+  text-decoration: none; cursor: pointer }
+.btn:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px }
+.btn-gold { background: var(--gold); color: var(--obsidian) }
+
+/* hero */
+.hero { background: var(--hero-bg); color: var(--hero-fg); padding-block: 28px 72px; overflow: hidden }
+/* wordmark from First Access Brand/, recolored in Warm Gold like the foil stationery */
+.logo { display: block; width: 150px; aspect-ratio: 600 / 248; background: var(--gold);
+  -webkit-mask: url(logo-mask.png) center / contain no-repeat; mask: url(logo-mask.png) center / contain no-repeat }
+.logo span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0) }
+/* income channels */
+.channels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px }
+.channel { background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 26px; display: grid; gap: 10px; align-content: start }
+.channel h3 { font-size: 27px }
+.channel p { color: var(--muted); font-size: 15px }
+.keep { font-size: 13px; font-weight: 600; color: var(--fg); border-top: 1px solid var(--line); padding-top: 12px; margin-top: 4px }
+.keep::before { content: "You keep: "; color: var(--gold) }
+.channel.soon { background: transparent; border-style: dashed }
+.soon-tag { justify-self: start; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; border: 1px solid var(--gold); border-radius: 999px; padding: 2px 10px; color: var(--muted) }
+/* calculator */
+.calc { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 32px; align-items: start }
+.calc-in { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 20px }
+.calc-in label { color: var(--muted) }
+.calc-in input { color: var(--fg); background: var(--panel); border-color: var(--line); font-variant-numeric: tabular-nums }
+.calc-out { background: var(--hero-bg); color: var(--hero-fg); border-radius: 24px; padding: 28px; display: grid; gap: 12px; box-shadow: inset 0 0 0 1px rgba(212,175,55,.5) }
+.calc-out .row { font-variant-numeric: tabular-nums; color: var(--hero-muted); font-size: 15px }
+.calc-out .total { border-top: 1px solid rgba(212,175,55,.4); padding-top: 14px; color: var(--hero-fg) }
+.calc-out .big { font-family: var(--serif); font-size: 56px; line-height: 1; color: var(--gold) }
+.calc-out .mini { color: var(--hero-muted); font-size: 12.5px }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 56px; align-items: center; margin-top: 56px }
+.hero h1 { font-size: clamp(42px, 6vw, 72px) }
+.hero h1 em { font-style: italic; color: var(--gold) }
+.hero .sub { font-size: 18px; color: var(--hero-muted); max-width: 34em; margin-top: 22px }
+.hero .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 22px; margin-top: 32px }
+.hero .fine { font-size: 13px; color: var(--hero-muted) }
+.hero .fine b { color: var(--hero-fg) }
+
+/* phone + scrubber */
+.stage { display: grid; justify-items: center; gap: 18px }
+.phone { width: min(330px, 100%); border-radius: 44px; padding: 12px; background: #05060a;
+  box-shadow: 0 0 0 1px rgba(212,175,55,.45), 0 30px 80px rgba(0,0,0,.45) }
+.screen { border-radius: 33px; overflow: hidden; background: var(--card-bg); color: var(--card-fg); height: 600px; display: flex; flex-direction: column }
+.sms { margin: 14px 14px 0; padding: 10px 12px; border-radius: 16px 16px 16px 4px; background: #e9e9ef; color: #1b1b28; font-size: 12.5px; line-height: 1.4 }
+.sms small { display: block; color: #6b6b7c; font-size: 10.5px; margin-bottom: 2px }
+.card { flex: 1; overflow: auto; padding: 14px 16px 18px; font-size: 13px }
+.card-top { background: var(--midnight); color: var(--alabaster); border-radius: 18px; padding: 14px }
+.card-top .tag { display: flex; justify-content: space-between; font-size: 11px; color: #c4c4dc }
+.card-top .label { margin-top: 10px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold) }
+.card-top h3 { font-family: var(--sans); font-weight: 600; font-size: 20px; line-height: 1.25; margin-top: 4px }
+.card-top .meta { font-size: 12px; color: #c4c4dc; margin-top: 4px }
+.steps { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 8px }
+.step { border: 1px solid var(--card-line); border-radius: 14px; padding: 10px 12px }
+.step-head { display: flex; align-items: center; gap: 10px }
+.num { font-size: 11px; color: var(--card-muted); font-variant-numeric: tabular-nums; width: 18px }
+.ph { height: 8px; border-radius: 4px; background: var(--card-line); flex: 1; max-width: 120px }
+.step-head .t { flex: 1; font-weight: 600 }
+.ico { width: 18px; height: 18px; color: var(--card-muted); flex: none }
+.done .ico { color: var(--gold) }
+.open { border-color: var(--gold) }
+.body { margin-top: 10px; display: grid; gap: 8px; color: var(--card-fg) }
+.row { display: flex; justify-content: space-between; gap: 8px; align-items: center }
+.chk { display: flex; gap: 8px; align-items: flex-start }
+.box { width: 16px; height: 16px; border: 1px solid var(--gold); border-radius: 4px; flex: none; margin-top: 2px }
+.box.on { background: var(--gold) }
+.pill { border: 1px solid var(--gold); border-radius: 999px; padding: 3px 10px; font-size: 12px; white-space: nowrap }
+.pill.on { background: var(--gold); color: var(--obsidian) }
+.mini { font-size: 11px; color: var(--card-muted) }
+.stars { color: var(--gold); letter-spacing: 2px; font-size: 18px }
+.cbtn { background: var(--btn-bg); color: var(--btn-fg); border-radius: 999px; text-align: center; padding: 8px; font-weight: 600; font-size: 12.5px }
+.powered { text-align: center; font-size: 10.5px; color: var(--card-muted); margin-top: 14px }
+
+.progress { width: min(220px, 60%); height: 2px; background: rgba(212,175,55,.25); border-radius: 2px; overflow: hidden }
+.progress span { display: block; height: 100%; background: var(--gold); transform-origin: left; transform: scaleX(0) }
+.progress span.run { animation: fill var(--stage-ms, 3800ms) linear forwards }
+.scrub-note { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--hero-muted); text-align: center }
+
+/* sections */
+section { padding-block: 80px }
+section + section { border-top: 1px solid var(--line) }
+.section-head { max-width: 40rem; display: grid; gap: 14px; margin-bottom: 40px }
+.section-head h2 { font-size: clamp(32px, 4vw, 46px) }
+.section-head p { color: var(--muted); font-size: 17px }
+.primer { padding-block: 56px }
+.primer p { font-family: var(--serif); font-size: clamp(24px, 3vw, 32px); line-height: 1.35; max-width: 44rem }
+.primer p span { color: var(--muted) }
+
+.leaks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px }
+.leak { display: grid; gap: 10px; align-content: start; border-top: 1px solid var(--gold); padding-top: 18px }
+.leak .when { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums }
+.leak h3 { font-size: 26px }
+.leak p { color: var(--muted) }
+.leak p b { color: var(--fg); font-weight: 600 }
+
+.how { margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; counter-reset: s }
+.how li { list-style: none; background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 26px; display: grid; gap: 10px; align-content: start }
+.how li::before { counter-increment: s; content: "Step " counter(s); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); font-weight: 600 }
+.how h3 { font-size: 26px }
+.how p { color: var(--muted) }
+
+.mods { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; margin-top: 48px }
+.mods h4 { margin: 0 0 10px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted) }
+.mods ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px }
+
+.guards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 48px }
+.guard { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 14px; padding-block: 20px; border-bottom: 1px solid var(--line) }
+.guard svg { width: 22px; height: 22px; color: var(--gold); margin-top: 3px }
+.guard h3 { font: 600 16px var(--sans) }
+.guard p { color: var(--muted); font-size: 15px; margin-top: 4px }
+
+.price { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center }
+.plan { background: var(--hero-bg); color: var(--hero-fg); border-radius: 28px; padding: 36px; display: grid; gap: 18px;
+  box-shadow: inset 0 0 0 1px rgba(212,175,55,.5) }
+.amount { font-family: var(--serif); font-size: 72px; line-height: 1 }
+.amount small { font: 400 16px var(--sans); color: var(--hero-muted) }
+.plan ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px }
+.plan li { display: flex; gap: 10px }
+.plan li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); margin-top: 9px; flex: none }
+
+.faq { max-width: 46rem; display: grid }
+.faq details { border-bottom: 1px solid var(--line); padding-block: 18px }
+.faq summary { cursor: pointer; font-family: var(--serif); font-size: 24px; list-style: none; display: flex; justify-content: space-between; gap: 16px }
+.faq summary::after { content: "+"; color: var(--gold) }
+.faq details[open] summary::after { content: "−" }
+.faq p { color: var(--muted); margin-top: 10px }
+
+.join { background: var(--hero-bg); color: var(--hero-fg) }
+.join-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: start }
+.join h2 { font-size: clamp(36px, 4.5vw, 54px) }
+.join .lead { color: var(--hero-muted); font-size: 17px; margin-top: 18px; max-width: 30em }
+#form { display: grid; gap: 14px; background: rgba(251,251,242,.04); border: 1px solid rgba(212,175,55,.4); border-radius: 24px; padding: 28px }
+.fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px }
+label { display: grid; gap: 6px; font-size: 13px; color: var(--hero-muted) }
+input, select { font: 15px var(--sans); color: var(--hero-fg); background: rgba(251,251,242,.06); border: 1px solid rgba(251,251,242,.22);
+  border-radius: 12px; padding: 12px 14px; width: 100%; min-width: 0 }
+select option { color: #16163a }
+.form-note { font-size: 12.5px; color: var(--hero-muted) }
+.msg { font-size: 14px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--gold) }
+footer { padding-block: 28px; font-size: 12.5px; color: var(--muted) }
+
+@media (max-width: 900px) {
+  .hero-grid, .price, .join-grid { grid-template-columns: minmax(0, 1fr); gap: 40px }
+  .leaks, .how { grid-template-columns: minmax(0, 1fr) }
+  .mods { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+  .guards { grid-template-columns: minmax(0, 1fr) }
+}
+@media (max-width: 520px) { .fields, .mods { grid-template-columns: minmax(0, 1fr) } .screen { height: 560px } section { padding-block: 60px } }
+/* motion: hero loads in sequence, the phone floats and plays the visit, sections rise as they scroll in */
+@media (prefers-reduced-motion: no-preference) {
+  .card.swap { animation: rise .5s cubic-bezier(.2,.7,.2,1) }
+  .sms.swap { animation: pop .5s cubic-bezier(.2,.7,.2,1) }
+  .hero .logo, .hero-copy > * { animation: up .9s cubic-bezier(.2,.7,.2,1) both }
+  .hero-copy > :nth-child(1) { animation-delay: .15s } .hero-copy > :nth-child(2) { animation-delay: .3s }
+  .hero-copy > :nth-child(3) { animation-delay: .45s } .hero-copy > :nth-child(4) { animation-delay: .6s }
+  .phone { animation: up 1.1s .35s cubic-bezier(.2,.7,.2,1) both, float 7s 1.5s ease-in-out infinite }
+  .hero h1 em { background: linear-gradient(100deg, var(--gold) 40%, #f4e3a6 50%, var(--gold) 60%) 0 0 / 250% 100%;
+    -webkit-background-clip: text; background-clip: text; color: transparent; animation: sheen 6s 1.2s ease-in-out infinite }
+  .btn-gold { transition: transform .2s ease, box-shadow .2s ease }
+  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(212,175,55,.35) }
+  @supports (animation-timeline: view()) {
+    .section-head, .primer p, .leak, .channel, .how li, .guard, .plan, .calc-out, .faq details, .join-grid > * {
+      animation: reveal linear both; animation-timeline: view(); animation-range: entry 0% entry 45% }
+  }
+}
+@media (prefers-reduced-motion: reduce) { .progress { display: none } }
+@keyframes rise { from { opacity: 0; transform: translateY(14px) } to { opacity: 1; transform: none } }
+@keyframes pop { from { opacity: 0; transform: translateY(8px) scale(.97) } to { opacity: 1; transform: none } }
+@keyframes up { from { opacity: 0; transform: translateY(28px) } to { opacity: 1; transform: none } }
+@keyframes reveal { from { opacity: .15; transform: translateY(36px) } to { opacity: 1; transform: none } }
+@keyframes float { 50% { transform: translateY(-10px) } }
+@keyframes sheen { 0%, 60% { background-position: 100% 0 } 100% { background-position: -50% 0 } }
+@keyframes fill { to { transform: scaleX(1) } }
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="logo" role="img" aria-label="First Access"></div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">For professional services</p>
+        <h1 style="margin-top:16px">Expand your trust into <em>another channel of income</em>.</h1>
+        <p class="sub">Clients already ask what to use, when to come back and where to go next. First Access puts your answers on one branded card after every visit, with your product links, add-ons, tips and rebooking built in. It runs from your booking system, so your team does nothing extra.</p>
+        <div class="cta-row">
+          <a class="btn btn-gold" href="#join">Claim a founding spot</a>
+          <p class="fine"><b>$99/mo per studio</b>, locked for founding studios.<br>Clients don't download anything.</p>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="phone" aria-live="polite">
+          <div class="screen">
+            <div class="sms" id="sms"></div>
+            <div class="card" id="card"></div>
+          </div>
+        </div>
+        <div class="progress" aria-hidden="true"><span id="bar"></span></div>
+        <p class="scrub-note" id="note"></p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="primer">
+    <div class="wrap">
+      <p>When a client asks which serum to buy, you answer. When they ask when to come back, you answer. <span>You're already their most trusted advisor. Right now, that advice pays someone else.</span></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Your trust already moves money</p>
+        <h2>Clients act on your advice. Someone else gets paid.</h2>
+        <p>Your expertise doesn't stop at checkout, and neither does the spending it drives. Here's where that money goes today.</p>
+      </div>
+      <div class="leaks">
+        <div class="leak">
+          <span class="when">Day of the visit</span>
+          <h3>The tip they meant to leave</h3>
+          <p>Few clients carry cash anymore. The card offers <b>a tip by Zelle or Venmo</b> after the visit, sent to the studio or straight to the practitioner.</p>
+        </div>
+        <div class="leak">
+          <span class="when">Days 3–5</span>
+          <h3>The serum they buy online</h3>
+          <p>They buy what you tell them to use, through someone else's link. The card recommends <b>your picks, with your affiliate links</b>, timed to their healing stage. You keep 100% of the commission.</p>
+        </div>
+        <div class="leak">
+          <span class="when">Day 76 of 90</span>
+          <h3>The rebook that went elsewhere</h3>
+          <p>You set a rebook interval in days for each treatment. Two weeks before they're due, they get a text, and <b>the card opens on your open times</b>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">New channels of income</p>
+        <h2>Five ways your trust starts paying you</h2>
+        <p>Each channel is a module you switch on. Your clients see only the ones you choose.</p>
+      </div>
+      <div class="channels">
+        <div class="channel"><h3>Retail commissions</h3><p>Your product picks go out after every visit with your affiliate links attached.</p><p class="keep">100% of commissions</p></div>
+        <div class="channel"><h3>Your own shelf</h3><p>Sell the products you stock. Clients shop your store link or reserve an item for pickup at the front desk.</p><p class="keep">The full sale</p></div>
+        <div class="channel"><h3>Add-ons before the visit</h3><p>While clients prep, the card suggests upgrades that fit the treatment, like a lip flip with Botox. Their choices go straight to your booking system.</p><p class="keep">A bigger ticket</p></div>
+        <div class="channel"><h3>Tips</h3><p>A tip step after the visit, with Venmo pre-filled and Zelle one tap away. Tips go to the studio account or to each practitioner.</p><p class="keep">Every tip, no processing fee</p></div>
+        <div class="channel"><h3>Rebookings on time</h3><p>You set a rebook interval for each treatment. Clients get a text two weeks before they're due, with your open times on the card.</p><p class="keep">The next visit</p></div>
+        <div class="channel soon"><span class="soon-tag">Coming soon</span><h3>Local ad network</h3><p>Earn a share when non-competing local businesses place a sponsored offer on your cards. You approve every advertiser.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Run your numbers</p>
+        <h2>What could your trust earn each month?</h2>
+        <p>Enter your own numbers. The starting values are placeholders for a mid-size studio, not results from real studios.</p>
+      </div>
+      <div class="calc">
+        <form class="calc-in" id="calc" onsubmit="return false">
+          <label for="c-visits">Visits per month<input id="c-visits" type="number" min="0" value="120" inputmode="numeric"></label>
+          <label for="c-ticket">Average visit ($)<input id="c-ticket" type="number" min="0" value="350" inputmode="numeric"></label>
+          <label for="c-buy">Clients who buy a pick (%)<input id="c-buy" type="number" min="0" max="100" value="10" inputmode="numeric"></label>
+          <label for="c-comm">Commission per purchase ($)<input id="c-comm" type="number" min="0" value="8" inputmode="numeric"></label>
+          <label for="c-add">Clients who add an add-on (%)<input id="c-add" type="number" min="0" max="100" value="8" inputmode="numeric"></label>
+          <label for="c-addv">Average add-on ($)<input id="c-addv" type="number" min="0" value="60" inputmode="numeric"></label>
+          <label for="c-rebook">Extra rebooks per month<input id="c-rebook" type="number" min="0" value="3" inputmode="numeric"></label>
+        </form>
+        <div class="calc-out" aria-live="polite">
+          <div class="row"><span>Retail commissions</span><span id="o-retail"></span></div>
+          <div class="row"><span>Add-ons</span><span id="o-add"></span></div>
+          <div class="row"><span>Extra rebookings</span><span id="o-rebook"></span></div>
+          <div class="row total"><span>Estimated per month</span></div>
+          <div class="big" id="o-total"></div>
+          <p class="mini" id="o-vs"></p>
+          <p class="mini">This is an estimate from your inputs, not a promise of results. Tips aren't counted because they go to your team.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">How it works</p>
+        <h2>Set up once. Every booking does the rest.</h2>
+      </div>
+      <ul class="how">
+        <li><h3>Connect your booking system</h3><p>Square and Google Calendar at launch. First Access reads appointments, first names and mobile numbers. It never changes a booking or sees payment details.</p></li>
+        <li><h3>Choose your modules</h3><p>Turn on what fits your studio. Turn a module off and its step disappears from every card.</p></li>
+        <li><h3>Every booking sends a card</h3><p>Booking a visit sends the card. Checkout switches it to aftercare. One link the whole way, and it updates itself.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Trust is the asset</p>
+        <h2>We protect the trust that earns for you.</h2>
+        <p>This income lasts only as long as clients keep trusting you. These rules are built into every card, to protect that trust and your license.</p>
+      </div>
+      <div class="guards">
+        <div class="guard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="3"/><path d="M9 8h6M9 12h3"/></svg><div><h3>No treatment names in texts</h3><p>Texts say “your visit.” Details show up only inside the client's card.</p></div></div>
+        <div class="guard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg><div><h3>Consent first, STOP always works</h3><p>Only clients who agreed to texts get them. One STOP reply ends all of them.</p></div></div>
+        <div class="guard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg><div><h3>Every rating can be posted</h3><p>There's no review gating. The AI helper drafts only from the client's own answers, and they edit it before posting.</p></div></div>
+        <div class="guard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><div><h3>You approve every AI suggestion</h3><p>Product matches and affiliate applications stay drafts until you sign off. Ingredient conflicts get flagged.</p></div></div>
+        <div class="guard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg><div><h3>Disclosures are built in</h3><p>Every product pick carries a short affiliate disclosure, as the FTC requires.</p></div></div>
+        <div class="guard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg><div><h3>Read-only on your calendar</h3><p>It never moves or cancels an appointment and never touches card payments.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap price">
+      <div class="section-head" style="margin:0">
+        <p class="eyebrow">Pricing</p>
+        <h2>One plan. Every channel.</h2>
+        <p>Founding studios keep this rate for as long as they stay. They also choose which booking systems we connect after Square and Google Calendar.</p>
+      </div>
+      <div class="plan">
+        <p class="eyebrow">Founding studio</p>
+        <p class="amount">$99 <small>/ month per studio</small></p>
+        <ul>
+          <li>A client card for every booking</li>
+          <li>All modules, including both AI assistants</li>
+          <li>Your commissions are 100% yours</li>
+          <li>Rate locked for as long as you stay</li>
+        </ul>
+        <a class="btn btn-gold" href="#join">Claim a founding spot</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">Questions owners ask</p><h2>Before you sign up</h2></div>
+      <div class="faq">
+        <details><summary>How do I earn from product recommendations?</summary><p>You join affiliate programs such as Amazon Associates, ShopMy, LTK or a brand's own program. First Access helps you find and apply to them, and the programs pay commissions to you directly.</p></details>
+        <details><summary>Do my clients need to download an app?</summary><p>No. They tap a link in a text and the card opens in their phone's browser. They use the same link from booking through rebooking.</p></details>
+        <details><summary>Will this mess with my booking system?</summary><p>No. First Access reads appointments, first names and mobile numbers. It can't change or cancel a booking, and it never sees payment details.</p></details>
+        <details><summary>Is it allowed to ask clients for reviews?</summary><p>Yes, if every client gets the same chance to post, whatever their rating. That's how First Access works. Yelp discourages asking for reviews, so Yelp is a separate switch, and the setting explains the risk before you turn it on.</p></details>
+        <details><summary>My booking system isn't Square. Can I still join?</summary><p>Yes. Google Calendar works with any studio, and founding studios tell us which systems to connect next. Pick yours in the form below.</p></details>
+        <details><summary>When can I start?</summary><p>Founding studios get access first. We'll email you before your setup opens. Joining the list costs nothing.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="join" id="join">
+    <div class="wrap join-grid">
+      <div>
+        <p class="eyebrow">Founding studios</p>
+        <h2 style="margin-top:14px">Expand your trust into another channel of income.</h2>
+        <p class="lead">Claim a spot to lock in $99/mo, get access first, and tell us which booking system to connect next.</p>
+      </div>
+      <form id="form" novalidate>
+        <div class="fields">
+          <label for="f-name">Your name<input id="f-name" name="name" autocomplete="name" required></label>
+          <label for="f-studio">Studio name<input id="f-studio" name="studio" autocomplete="organization" required></label>
+          <label for="f-email">Email<input id="f-email" name="email" type="email" autocomplete="email" required></label>
+          <label for="f-city">City<input id="f-city" name="city" autocomplete="address-level2"></label>
+        </div>
+        <label for="f-booking">Booking system
+          <select id="f-booking" name="booking" required>
+            <option value="">Choose one</option>
+            <option>Square</option><option>Google Calendar</option><option>Vagaro</option>
+            <option>Boulevard</option><option>Mindbody</option><option>Other</option>
+          </select>
+        </label>
+        <button class="btn btn-gold" type="submit">Claim a founding spot</button>
+        <p class="form-note">No payment now. We email you before your setup opens. Prefer email? Write to jomar@bowtiefunnel.com.</p>
+        <p class="msg" id="msg" hidden></p>
+      </form>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px"><div class="logo" role="img" aria-label="First Access" style="width:96px"></div><span>FirstAccess.io · The sample card uses a fictional studio and client.</span></div></footer>
+
+<script>
+const ICON = {
+  check: '<path d="M5 12l4 4 10-10"/>',
+  list: '<path d="M9 6h11M9 12h11M9 18h11M4 6h1M4 12h1M4 18h1"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  clock: '<circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/>',
+  bag: '<path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 016 0v2"/>',
+  star: '<path d="M12 4l2.4 5 5.6.6-4.2 3.8 1.2 5.5L12 16l-5 2.9 1.2-5.5L4 9.6 9.6 9z"/>',
+  heart: '<path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z"/>',
+  cal: '<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>'
+};
+const svg = k => `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">${ICON[k]}</svg>`;
+const STEPS = [['Prep checklist','list'],['Add to your visit','plus'],['Healing timeline','clock'],['Products from Elena','bag'],['Leave a Google review','star'],['Leave a tip','heart'],['Book your next visit','cal']];
+const VISIT = ['Botox: forehead & frown lines', 'Sat, Oct 17 · 2:00 PM · with Elena Ruiz, RN'];
+
+const STAGES = [
+  { tab: '5 days before', open: [0], label: 'Your visit · 5 days to go', title: VISIT[0], meta: VISIT[1] + '<br>412 Coast Hwy, Laguna Beach',
+    sms: 'Hi Maya, you\'re booked for Sat, Oct 17 at 2:00 PM. Your visit card: fa.io/c/7Kq2 Reply STOP to opt out.',
+    body: [`<div class="chk"><span class="box on"></span>Pause retinol and exfoliating acids 2 days before</div>
+      <div class="chk"><span class="box on"></span>Skip alcohol and fish oil the day before</div>
+      <div class="chk"><span class="box"></span>Arrive with a clean face, no makeup</div>`] },
+  { tab: 'Day 3', open: [2], label: 'Days 3–5', title: 'Results start to show', meta: 'Botox · with Elena Ruiz, RN',
+    body: [`<div class="mini">Today, Day 1 ✓</div>
+      <div class="row" style="border-left:2px solid var(--gold);padding-left:8px"><span><b>Days 3–5</b><br>Lines soften. Light workouts are fine again.</span></div>
+      <div class="mini">Day 14 · Full result, touch-up check</div>`] },
+  { tab: 'Day 4', open: [3], label: 'Days 3–5', title: 'Results start to show', meta: 'Botox · with Elena Ruiz, RN',
+    body: [`<div class="row"><span>Hyaluronic serum<br><span class="mini">From Day 3: hydration</span></span><span class="pill">Shop</span></div>
+      <div class="row"><span>Mineral SPF 46<br><span class="mini">Daily: protect results</span></span><span class="pill">Shop</span></div>
+      <div class="mini">Elena may earn a commission on these picks.</div>`] },
+  { tab: 'Day 76', open: [6], label: 'Rebook · due in 14 days', title: 'Time for your next visit', meta: 'Elena has openings this week',
+    sms: 'Hi Maya, it\'s almost time for your next visit with Company Med Spa. Pick a time: fa.io/c/7Kq2',
+    body: [`<div class="row" style="flex-wrap:wrap;justify-content:flex-start"><span class="pill">Thu 11:00</span><span class="pill on">Sat 2:00</span><span class="pill">Tue 4:30</span></div>
+      <div class="cbtn">Book Sat, Jan 2 at 2:00 PM</div>`] }
+];
+
+const $ = id => document.getElementById(id);
+function render(i) {
+  const s = STAGES[i], first = s.open[0];
+  const steps = STEPS.map(([t, ic], n) => {
+    const k = s.open.indexOf(n);
+    if (k > -1) return `<li class="step open"><div class="step-head"><span class="num">0${n+1}</span><span class="t">${t}</span>${svg(ic)}</div><div class="body">${s.body[k]}</div></li>`;
+    if (n < first) return `<li class="step done"><div class="step-head"><span class="num">0${n+1}</span><span class="t">${t}</span>${svg('check')}</div></li>`;
+    return `<li class="step"><div class="step-head"><span class="num">0${n+1}</span><span class="ph"></span><span style="flex:1"></span>${svg(ic)}</div></li>`;
+  }).join('');
+  const card = $('card');
+  card.innerHTML = `<div class="card-top"><div class="tag"><span>Company Med Spa</span><span>Maya Chen</span></div>
+    <div class="label">${s.label}</div><h3>${s.title}</h3><div class="meta">${s.meta}</div></div>
+    <ul class="steps">${steps}</ul><p class="powered">Powered by FirstAccess.io</p>`;
+  card.classList.remove('swap'); void card.offsetWidth; card.classList.add('swap'); card.scrollTop = 0;
+  $('sms').hidden = !s.sms;
+  if (s.sms) $('sms').innerHTML = `<small>Company Med Spa · text</small>${s.sms}`;
+  $('note').textContent = s.tab;
+  $('sms').classList.remove('swap'); void $('sms').offsetWidth; $('sms').classList.add('swap');
+  const bar = $('bar'); bar.classList.remove('run'); void bar.offsetWidth; bar.classList.add('run');
+}
+// Autoplay through the visit; holds still for reduced-motion viewers and while hovered.
+const STAGE_MS = 3800;
+let cur = 0, timer = null;
+const play = () => { if (!timer && !matchMedia('(prefers-reduced-motion: reduce)').matches) timer = setInterval(() => render(cur = (cur + 1) % STAGES.length), STAGE_MS); };
+const hold = () => { clearInterval(timer); timer = null; };
+document.querySelector('.phone').addEventListener('mouseenter', hold);
+document.querySelector('.phone').addEventListener('mouseleave', () => { render(cur); play(); });
+render(0); play();
+
+// Income estimate: inputs are the owner's own numbers.
+const money = n => '$' + Math.round(n).toLocaleString('en-US');
+const val = id => Math.max(0, parseFloat($(id).value) || 0);
+function calc() {
+  const v = val('c-visits'), retail = v * val('c-buy') / 100 * val('c-comm'),
+        add = v * val('c-add') / 100 * val('c-addv'), rebook = val('c-rebook') * val('c-ticket'),
+        total = retail + add + rebook;
+  $('o-retail').textContent = money(retail); $('o-add').textContent = money(add);
+  $('o-rebook').textContent = money(rebook); $('o-total').textContent = money(total);
+  $('o-vs').textContent = total > 99 ? `About ${Math.floor(total / 99)}× the $99 monthly plan.` : 'Less than the $99 monthly plan at these numbers.';
+}
+$('calc').addEventListener('input', calc); calc();
+
+// Waitlist: saves to the artifact's db when the viewer can write; otherwise says so plainly.
+// ponytail: artifact db only reaches signed-in org viewers; a public launch needs a real form backend.
+const SIGNUP_EMAIL = 'jomar@bowtiefunnel.com';
+const form = $('form'), msg = $('msg');
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  if (!form.reportValidity()) return;
+  const data = Object.fromEntries(new FormData(form));
+  const show = t => { msg.textContent = t; msg.hidden = false; };
+  try {
+    const db = window.claude ? await window.claude.use('db') : null;
+    const user = window.claude ? await window.claude.use('user') : null;
+    const uid = user && await user.id();
+    if (!db || !uid) {
+      // ponytail: mailto until a real form backend exists; some visitors have no mail app, so the address stays visible.
+      const body = `Name: ${data.name}\nStudio: ${data.studio}\nEmail: ${data.email}\nCity: ${data.city}\nBooking system: ${data.booking}`;
+      location.href = `mailto:${SIGNUP_EMAIL}?subject=${encodeURIComponent('Founding spot: ' + data.studio)}&body=${encodeURIComponent(body)}`;
+      return show(`Your email app should open with your details filled in. Just hit send. If it doesn't open, email ${SIGNUP_EMAIL} with your studio name.`);
+    }
+    await db.doc('waitlist/' + uid).set({ ...data, at: new Date().toISOString() });
+    form.querySelectorAll('input,select,button').forEach(el => el.disabled = true);
+    show(`You're on the list, ${data.name.split(' ')[0]}. We'll email ${data.email} before setup opens.`);
+  } catch (err) {
+    show('That didn\'t save. Check your connection and try again.');
+  }
+});
+</script>
+</body>
+</html>
