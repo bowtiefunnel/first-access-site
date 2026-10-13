@@ -77,7 +77,7 @@ a { color: inherit }
 .approve svg { width: 20px; height: 20px; color: var(--gold); flex: none }
 .panel { background: rgba(251,251,242,.05); border: 1px solid rgba(212,175,55,.45); border-radius: 24px; padding: 20px; display: grid; gap: 14px }
 .panel-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 13px; color: var(--hero-muted) }
-.panel-head b { color: var(--gold); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 12px }
+.panel-head b { white-space: nowrap; color: var(--gold); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 12px }
 .live { display: inline-flex; align-items: center; gap: 6px } .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--gold) }
 .svcs { display: flex; flex-wrap: wrap; gap: 6px }
 .svcs span { font-size: 12px; border: 1px solid rgba(251,251,242,.25); border-radius: 999px; padding: 3px 10px; color: var(--hero-fg) }
@@ -219,7 +219,31 @@ footer { padding-block: 28px; font-size: 12.5px; color: var(--muted) }
   .mods { grid-template-columns: repeat(2, minmax(0, 1fr)) }
   .guards { grid-template-columns: minmax(0, 1fr) }
 }
-@media (max-width: 520px) { .fields, .mods { grid-template-columns: minmax(0, 1fr) } .screen { height: 560px } section { padding-block: 60px } }
+@media (max-width: 900px) {
+  .channels { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+  .calc { grid-template-columns: minmax(0, 1fr) }
+}
+@media (max-width: 600px) {
+  .channels { grid-template-columns: minmax(0, 1fr) }
+  .feed { min-height: 0 }
+  .panel-head { flex-wrap: wrap }
+  input, select { font-size: 16px } /* below 16px, iOS zooms the page on focus */
+  .hero { padding-block: 22px 56px } .hero-grid { margin-top: 36px }
+  .hero .cta-row .btn { width: 100% }
+  .amount { font-size: 60px }
+  .faq summary { font-size: 21px }
+  footer { padding-bottom: 96px }
+}
+@media (max-width: 520px) { .fields { grid-template-columns: minmax(0, 1fr) } .screen { height: 540px } section { padding-block: 60px } }
+/* phone-only sticky CTA; hides while the hero button or the form is on screen */
+.sticky-cta { display: none }
+@media (max-width: 600px) {
+  .sticky-cta { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); background: var(--hero-bg);
+    border-top: 1px solid rgba(212,175,55,.4); transition: transform .3s ease }
+  .sticky-cta .btn { width: 100% }
+  .sticky-cta.away { transform: translateY(110%) }
+}
 /* motion: hero loads in sequence, the phone floats and plays the visit, sections rise as they scroll in */
 @media (prefers-reduced-motion: no-preference) {
   .card.swap { animation: rise .5s cubic-bezier(.2,.7,.2,1) }
@@ -475,6 +499,7 @@ footer { padding-block: 28px; font-size: 12.5px; color: var(--muted) }
     </div>
   </section>
 </main>
+<div class="sticky-cta away" id="sticky"><a class="btn btn-gold" href="#join">Claim a founding spot</a></div>
 <footer><div class="wrap" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px"><div class="logo" role="img" aria-label="First Access" style="width:96px"></div><span>FirstAccess.io · The sample card uses a fictional studio and client.</span></div></footer>
 
 <script>
@@ -560,6 +585,14 @@ else {
   }, 2200);
   feed.innerHTML = taskHtml(TASKS[k++]);
 }
+
+// Sticky phone CTA: shown only when neither the hero button nor the form is visible.
+const seen = new Set();
+const io = new IntersectionObserver(es => {
+  es.forEach(e => e.isIntersecting ? seen.add(e.target) : seen.delete(e.target));
+  $('sticky').classList.toggle('away', seen.size > 0);
+});
+io.observe(document.querySelector('.hero .cta-row')); io.observe($('join'));
 
 // Income estimate: inputs are the owner's own numbers.
 const money = n => '$' + Math.round(n).toLocaleString('en-US');
