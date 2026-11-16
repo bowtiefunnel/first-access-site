@@ -1,0 +1,23 @@
+/* Shared look for the legal pages: same type and colors as the landing page, one readable column. */
+:root { --midnight: #11115D; --gold: #D4AF37; --ink: #12162b; --muted: #5d6075; --line: #e6e7ef; --soft: #f5f6fb; color-scheme: light }
+* { box-sizing: border-box }
+body { margin: 0; background: #fff; color: var(--ink); font: 16.5px/1.65 "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased }
+a { color: var(--midnight) }
+.top { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(17,17,93,.06) }
+.top .in { max-width: 1200px; margin: 0 auto; padding: 0 20px; height: 72px; display: flex; align-items: center; justify-content: space-between }
+.logo { display: block; width: 118px; aspect-ratio: 600 / 248; background: var(--midnight);
+  -webkit-mask: url(logo-mask.png) center / contain no-repeat; mask: url(logo-mask.png) center / contain no-repeat }
+.btn { display: inline-flex; align-items: center; min-height: 40px; padding: 0 18px; border-radius: 999px; background: var(--midnight); color: #fff; font: 600 14px "Inter", sans-serif; text-decoration: none }
+main { max-width: 760px; margin: 0 auto; padding: 56px 20px 80px }
+h1, h2 { font-family: "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif; letter-spacing: -.03em; line-height: 1.1; margin: 0 }
+h1 { font-size: clamp(36px, 5vw, 52px) }
+h2 { font-size: 23px; margin-top: 40px }
+.updated { color: var(--muted); margin: 12px 0 28px; font-size: 14.5px }
+.lead { font-size: 18.5px; color: #3c4058 }
+.summary { background: var(--soft); border-radius: 18px; padding: 18px 22px; margin: 24px 0 }
+.summary p { margin: 0 } .summary ul { margin: 8px 0 0; padding-left: 20px }
+p, ul { margin: 12px 0 0 } li { margin-top: 6px }
+footer { border-top: 1px solid var(--line); padding: 26px 20px 40px; text-align: center; font-size: 14px; color: var(--muted) }
+footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; margin-bottom: 8px }
+footer nav a { color: var(--ink); text-decoration: none }
+footer nav a[aria-current="page"] { font-weight: 600; color: var(--midnight) }

@@ -10,498 +10,559 @@
 <body>
 <title>Expand Your Trust</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600&family=Inter:wght@400;500;600&display=swap">
 <style>
-/* Layout: midnight hero with a live client card on a phone, then an alabaster
-   reading column; one CTA that always lands on the founding-studio form. */
+/* Layout follows a light, centered SaaS page: soft brand-gradient hero, split feature cards,
+   channel tabs, trust cards, FAQ, and a closing gradient band over the footer. */
 :root {
-  --midnight: #11115D; --obsidian: #0E1218; --gold: #D4AF37; --alabaster: #FBFBF2;
-  --bg: var(--alabaster); --fg: #16163a; --muted: #55566e; --line: #dcdace;
-  --panel: #ffffff; --btn-bg: var(--midnight); --btn-fg: var(--alabaster);
-  --hero-bg: var(--midnight); --hero-fg: var(--alabaster); --hero-muted: #c4c4dc;
-  --card-bg: var(--alabaster); --card-fg: #16163a; --card-muted: #66677d; --card-line: #e3e1d4;
-  --serif: "Cormorant Garamond", "Bodoni 72", Didot, Georgia, serif;
-  --sans: "Neue Haas Grotesk Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --midnight: #11115D; --gold: #D4AF37; --ink: #12162b; --muted: #5d6075; --line: #e6e7ef;
+  --soft: #f5f6fb; --peri: #eceefc; --white: #fff;
+  --display: "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --sans: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color-scheme: light;
 }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --bg: var(--obsidian); --fg: var(--alabaster); --muted: #a9abbb; --line: #262b38;
-  --panel: #151a24; --btn-bg: var(--alabaster); --btn-fg: var(--midnight);
-  --hero-bg: #0b0b3d; --card-bg: #151a24; --card-fg: var(--alabaster); --card-muted: #a9abbb; --card-line: #2a3040;
-  color-scheme: dark } }
-:root[data-theme="dark"] {
-  --bg: var(--obsidian); --fg: var(--alabaster); --muted: #a9abbb; --line: #262b38;
-  --panel: #151a24; --btn-bg: var(--alabaster); --btn-fg: var(--midnight);
-  --hero-bg: #0b0b3d; --card-bg: #151a24; --card-fg: var(--alabaster); --card-muted: #a9abbb; --card-line: #2a3040;
-  color-scheme: dark }
-
 * { box-sizing: border-box }
-body { background: var(--bg); color: var(--fg); font: 16px/1.6 var(--sans); margin: 0 }
-h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.1; text-wrap: balance; margin: 0 }
+html { scroll-behavior: smooth }
+body { background: var(--white); color: var(--ink); font: 16px/1.55 var(--sans); margin: 0; -webkit-font-smoothing: antialiased }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; letter-spacing: -.035em; line-height: 1.04; text-wrap: balance; margin: 0 }
 p { margin: 0 }
 a { color: inherit }
-.wrap { max-width: 1120px; margin: 0 auto; padding-inline: 20px }
-.eyebrow { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); font-weight: 600 }
-.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 26px;
-  border-radius: 999px; border: 0; background: var(--btn-bg); color: var(--btn-fg); font: 600 15px var(--sans);
-  text-decoration: none; cursor: pointer }
-.btn:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px }
-.btn-gold { background: var(--gold); color: var(--obsidian) }
+.wrap { max-width: 1200px; margin: 0 auto; padding-inline: 20px }
+.eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 500 }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 28px;
+  border-radius: 999px; border: 0; background: var(--midnight); color: #fff; font: 600 15px var(--sans);
+  text-decoration: none; cursor: pointer; box-shadow: 0 6px 20px rgba(17,17,93,.18) }
+.btn.sm { min-height: 40px; padding: 0 18px; font-size: 14px; box-shadow: none }
+.btn:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px }
+
+/* brand gradients: pale gold + pale midnight on white, with a light grain like the reference */
+.glow { position: relative; isolation: isolate;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 68%, #fff 100%),
+              radial-gradient(55% 65% at 88% 8%, rgba(212,175,55,.42), transparent 62%),
+              radial-gradient(60% 60% at 6% 50%, rgba(98,104,220,.30), transparent 66%),
+              linear-gradient(180deg, #eef0fb 0%, #f6f6fb 70%, #fff 100%) }
+.glow::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .22; mix-blend-mode: multiply;
+  -webkit-mask: linear-gradient(#000 60%, transparent); mask: linear-gradient(#000 60%, transparent);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E") }
+.glow-b { background: radial-gradient(70% 70% at 10% 0%, rgba(98,104,220,.32), transparent 65%),
+                      radial-gradient(70% 70% at 100% 100%, rgba(212,175,55,.38), transparent 65%), #eef0fb }
+.glow-c::before { -webkit-mask: none; mask: none }
+.glow-c { background: radial-gradient(70% 55% at 50% 100%, rgba(212,175,55,.45), transparent 70%),
+                      linear-gradient(180deg, #fff 0%, #e9ecfb 55%, #eef0fb 100%) }
+
+/* status pill above the hero headline; opens the waitlist */
+.announce { display: inline-block; padding: 7px 16px; border-radius: 999px; font-size: 13.5px; font-weight: 500; color: var(--midnight);
+  background: rgba(255,255,255,.7); border: 1px solid rgba(17,17,93,.12); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); margin-bottom: -4px;
+  text-decoration: none; transition: background .2s ease, border-color .2s ease }
+.announce:hover { background: #fff; border-color: rgba(17,17,93,.25) }
+.announce span { display: inline-block; margin-left: 4px; transition: transform .2s ease }
+.announce:hover span { transform: translateX(3px) }
+/* the pay-when-earned promise: plain text that gently pulses */
+.earned { display: inline-block; font-weight: 500; font-size: clamp(18px, 1.6vw, 21px); color: var(--midnight) }
+.earned strong { font-weight: 800; white-space: nowrap }
+.earned { text-wrap: balance }
+/* "tap": bold, with a finger-press and a ripple */
+.tap { display: inline-block; position: relative; font-weight: 700; color: var(--ink) }
+.tap::after { content: ""; position: absolute; left: 50%; top: 50%; width: 10px; height: 10px; border-radius: 50%;
+  border: 2px solid var(--midnight); transform: translate(-50%, -50%) scale(0); opacity: 0; pointer-events: none }
+.hero .earned { margin-top: -6px }
+.closing .earned { display: block; width: fit-content; margin: 22px auto 0 }
+
+/* header */
+.top { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.82); border-bottom: 1px solid rgba(17,17,93,.06); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px) }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px }
+/* wordmark from First Access Brand/, recolored Midnight */
+.logo { display: block; width: 118px; aspect-ratio: 600 / 248; background: var(--midnight);
+  -webkit-mask: url(logo-mask.png) center / contain no-repeat; mask: url(logo-mask.png) center / contain no-repeat }
 
 /* hero */
-.hero { background: var(--hero-bg); color: var(--hero-fg); padding-block: 28px 72px; overflow: hidden }
-/* wordmark from First Access Brand/, recolored in Warm Gold like the foil stationery */
-.logo { display: block; width: 150px; aspect-ratio: 600 / 248; background: var(--gold);
-  -webkit-mask: url(logo-mask.png) center / contain no-repeat; mask: url(logo-mask.png) center / contain no-repeat }
-.logo span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0) }
-/* income channels */
-.channels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px }
-.channel { background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 26px; display: grid; gap: 10px; align-content: start }
-.channel h3 { font-size: 27px }
-.channel p { color: var(--muted); font-size: 15px }
-.keep { font-size: 13px; font-weight: 600; color: var(--fg); border-top: 1px solid var(--line); padding-top: 12px; margin-top: 4px }
-.keep::before { content: "You keep: "; color: var(--gold) }
-.channel.soon { background: transparent; border-style: dashed }
-.soon-tag { justify-self: start; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; border: 1px solid var(--gold); border-radius: 999px; padding: 2px 10px; color: var(--muted) }
-/* AI Concierge band */
-.concierge { background: var(--hero-bg); color: var(--hero-fg); border-top: 0 !important }
-.cg { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center }
-.cg h2 { font-size: clamp(34px, 4.4vw, 54px) }
-.cg h2 em { color: var(--gold) }
-.cg .lead { color: var(--hero-muted); font-size: 17px; margin-top: 18px; max-width: 32em }
-.cg ul { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 10px; color: var(--hero-muted) }
-.cg ul { gap: 16px }
-.cg li { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 0 10px; align-items: start }
-.cg li b { display: block; color: var(--hero-fg); font-weight: 600 }
-.cg li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); margin-top: 10px }
-.approve { display: inline-flex; gap: 10px; align-items: center; margin-top: 24px; padding: 12px 16px; border: 1px solid var(--gold); border-radius: 14px; font-weight: 600 }
-.approve svg { width: 20px; height: 20px; color: var(--gold); flex: none }
-.panel { background: rgba(251,251,242,.05); border: 1px solid rgba(212,175,55,.45); border-radius: 24px; padding: 20px; display: grid; gap: 14px }
-.panel-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 13px; color: var(--hero-muted) }
-.panel-head b { white-space: nowrap; color: var(--gold); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 12px }
-.live { display: inline-flex; align-items: center; gap: 6px } .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--gold) }
-.svcs { display: flex; flex-wrap: wrap; gap: 6px }
-.svcs span { font-size: 12px; border: 1px solid rgba(251,251,242,.25); border-radius: 999px; padding: 3px 10px; color: var(--hero-fg) }
-.feed { display: grid; gap: 10px; align-content: start }
-.task { background: var(--card-bg); color: var(--card-fg); border-radius: 16px; padding: 14px; display: grid; gap: 6px; font-size: 13.5px }
-.task .row { display: flex; justify-content: space-between; gap: 10px; align-items: center }
-.task b { font-size: 14.5px }
-.task p { color: var(--card-muted) }
-.task { transition: opacity .5s ease, transform .5s ease }
-.task.pending { opacity: .35; transform: scale(.98) }
-.task.pending .wait { visibility: hidden }
-.wait { font-size: 11px; border: 1px solid var(--gold); border-radius: 999px; padding: 2px 9px; white-space: nowrap }
-@media (max-width: 900px) { .cg { grid-template-columns: minmax(0, 1fr); gap: 36px } }
-@media (prefers-reduced-motion: no-preference) {
-  .live::before { animation: blink 1.6s ease-in-out infinite }
-}
-@keyframes blink { 50% { opacity: .25 } }
-/* calculator */
-.calc { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 32px; align-items: start }
-.calc-in { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 20px }
-.calc-in label { color: var(--muted) }
-.calc-in input { color: var(--fg); background: var(--panel); border-color: var(--line); font-variant-numeric: tabular-nums }
-.calc-out { background: var(--hero-bg); color: var(--hero-fg); border-radius: 24px; padding: 28px; display: grid; gap: 12px; box-shadow: inset 0 0 0 1px rgba(212,175,55,.5) }
-.calc-out .row { font-variant-numeric: tabular-nums; color: var(--hero-muted); font-size: 15px }
-.calc-out .total { border-top: 1px solid rgba(212,175,55,.4); padding-top: 14px; color: var(--hero-fg) }
-.calc-out .big { font-family: var(--serif); font-size: 56px; line-height: 1; color: var(--gold) }
-.calc-out .mini { color: var(--hero-muted); font-size: 12.5px }
-.hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 56px; align-items: center; margin-top: 56px }
-.hero h1 { font-size: clamp(42px, 6vw, 72px) }
-.hero h1 em { font-style: italic; color: var(--gold) }
-.hero .sub { font-size: 18px; color: var(--hero-muted); max-width: 34em; margin-top: 22px }
-.hero .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 22px; margin-top: 32px }
-.hero .fine { font-size: 13px; color: var(--hero-muted) }
-.hero .fine b { color: var(--hero-fg) }
+.hero { margin-top: -72px; min-height: min(100svh, 940px); display: grid; place-items: center; text-align: center; padding: 140px 20px 64px }
+.hero-in { display: grid; justify-items: center; gap: 24px; max-width: 1140px }
+.hero h1 { font-size: clamp(40px, 6vw, 80px); max-width: 17em }
+.hero .sub { font-size: clamp(17px, 1.6vw, 20px); color: #3c4058; max-width: 36em }
+.hero .fine { font-size: clamp(16px, 1.3vw, 17.5px); color: var(--muted); margin-top: -10px; text-wrap: balance }
+.more { display: inline-flex; gap: 8px; align-items: center; margin-top: 40px; font-weight: 500; text-decoration: none }
+.more svg { width: 16px; height: 16px }
 
-/* phone + scrubber */
-.stage { display: grid; justify-items: center; gap: 18px }
-.phone { width: min(330px, 100%); border-radius: 44px; padding: 12px; background: #05060a;
-  box-shadow: 0 0 0 1px rgba(212,175,55,.45), 0 30px 80px rgba(0,0,0,.45) }
-.screen { border-radius: 33px; overflow: hidden; background: var(--card-bg); color: var(--card-fg); height: 600px; display: flex; flex-direction: column }
+section { padding-block: 72px }
+.center-head { text-align: center; display: grid; justify-items: center; gap: 14px; margin-bottom: 40px }
+.center-head h2 { font-size: clamp(34px, 4.4vw, 54px) }
+.center-head p { color: var(--muted); font-size: 18px; max-width: 34em }
+.center-head .example { font-size: 15px; color: var(--ink); background: var(--soft); border-radius: 999px; padding: 6px 16px }
+
+/* problem: where the money goes today. Alabaster band, left-aligned heading, white cards with gold labels */
+.leak-sec { background: #FBFBF2; border-block: 1px solid #efeee3; margin-block: 24px 48px }
+.left-head { display: grid; gap: 14px; max-width: 40rem; margin-bottom: 40px }
+.left-head h2 { font-size: clamp(32px, 4vw, 48px) }
+.leaks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px }
+.leak { background: #fff; border: 1px solid #e9e7da; border-radius: 22px; padding: 26px; display: grid; gap: 10px; align-content: start }
+.leak .when { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #b08d2a; font-weight: 600 }
+.leak h3 { font-size: 22px; letter-spacing: -.02em; line-height: 1.15 }
+.leak p { color: var(--muted); font-size: 15.5px }
+@media (max-width: 1000px) { .leaks { grid-template-columns: repeat(2, minmax(0, 1fr)) } }
+@media (max-width: 520px) { .leaks { grid-template-columns: minmax(0, 1fr) } }
+
+/* split feature cards */
+.feats { display: grid; gap: 28px }
+.feat { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); border: 1px solid var(--line); border-radius: 30px; overflow: hidden; background: #fff;
+  box-shadow: 0 1px 2px rgba(17,17,93,.04), 0 12px 40px rgba(17,17,93,.05) }
+.feat-copy { padding: 40px 44px; display: grid; grid-template-rows: auto 1fr; gap: 24px }
+.feat-copy > div { align-self: center } /* label stays on top; headline + text sit in the middle */
+.feat-copy h2 { font-size: clamp(30px, 3.2vw, 42px) }
+.feat-copy p:last-child { color: var(--muted); font-size: 17px; margin-top: 16px; max-width: 30em }
+.feat-visual { position: relative; display: grid; place-items: center; padding: 40px 28px; min-height: 480px }
+
+/* phone + client card */
+.stage { display: grid; justify-items: center; gap: 16px }
+.phone { width: min(300px, 100%); border-radius: 42px; padding: 10px; background: #fff;
+  box-shadow: 0 0 0 1px #dfe1ec, 0 30px 70px rgba(17,17,93,.18) }
+.screen { border-radius: 33px; overflow: hidden; background: #fbfbfd; height: 520px; display: flex; flex-direction: column }
 .sms { margin: 14px 14px 0; padding: 10px 12px; border-radius: 16px 16px 16px 4px; background: #e9e9ef; color: #1b1b28; font-size: 12.5px; line-height: 1.4 }
 .sms small { display: block; color: #6b6b7c; font-size: 10.5px; margin-bottom: 2px }
 .card { flex: 1; overflow: auto; padding: 14px 16px 18px; font-size: 13px }
-.card-top { background: var(--midnight); color: var(--alabaster); border-radius: 18px; padding: 14px }
+.card-top { background: var(--midnight); color: #fff; border-radius: 18px; padding: 14px }
 .card-top .tag { display: flex; justify-content: space-between; font-size: 11px; color: #c4c4dc }
 .card-top .label { margin-top: 10px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold) }
-.card-top h3 { font-family: var(--sans); font-weight: 600; font-size: 20px; line-height: 1.25; margin-top: 4px }
+.card-top h3 { font-family: var(--sans); letter-spacing: 0; font-weight: 600; font-size: 19px; line-height: 1.25; margin-top: 4px }
 .card-top .meta { font-size: 12px; color: #c4c4dc; margin-top: 4px }
 .steps { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 8px }
-.step { border: 1px solid var(--card-line); border-radius: 14px; padding: 10px 12px }
+.step { border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; background: #fff }
 .step-head { display: flex; align-items: center; gap: 10px }
-.num { font-size: 11px; color: var(--card-muted); font-variant-numeric: tabular-nums; width: 18px }
-.ph { height: 8px; border-radius: 4px; background: var(--card-line); flex: 1; max-width: 120px }
+.num { font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; width: 18px }
+.ph { height: 8px; border-radius: 4px; background: var(--line); flex: 1; max-width: 120px }
 .step-head .t { flex: 1; font-weight: 600 }
-.ico { width: 18px; height: 18px; color: var(--card-muted); flex: none }
+.ico { width: 18px; height: 18px; color: var(--muted); flex: none }
 .done .ico { color: var(--gold) }
 .open { border-color: var(--gold) }
-.body { margin-top: 10px; display: grid; gap: 8px; color: var(--card-fg) }
+.body { margin-top: 10px; display: grid; gap: 8px }
 .row { display: flex; justify-content: space-between; gap: 8px; align-items: center }
 .chk { display: flex; gap: 8px; align-items: flex-start }
 .box { width: 16px; height: 16px; border: 1px solid var(--gold); border-radius: 4px; flex: none; margin-top: 2px }
 .box.on { background: var(--gold) }
 .pill { border: 1px solid var(--gold); border-radius: 999px; padding: 3px 10px; font-size: 12px; white-space: nowrap }
-.pill.on { background: var(--gold); color: var(--obsidian) }
-.mini { font-size: 11px; color: var(--card-muted) }
-.stars { color: var(--gold); letter-spacing: 2px; font-size: 18px }
-.cbtn { background: var(--btn-bg); color: var(--btn-fg); border-radius: 999px; text-align: center; padding: 8px; font-weight: 600; font-size: 12.5px }
-.powered { text-align: center; font-size: 10.5px; color: var(--card-muted); margin-top: 14px }
-
-.progress { width: min(220px, 60%); height: 2px; background: rgba(212,175,55,.25); border-radius: 2px; overflow: hidden }
-.progress span { display: block; height: 100%; background: var(--gold); transform-origin: left; transform: scaleX(0) }
+.pill.on { background: var(--gold); color: var(--ink) }
+.mini { font-size: 11px; color: var(--muted) }
+.cbtn { background: var(--midnight); color: #fff; border-radius: 999px; text-align: center; padding: 8px; font-weight: 600; font-size: 12.5px }
+.powered { text-align: center; font-size: 10.5px; color: var(--muted); margin-top: 14px }
+.progress { width: min(200px, 60%); height: 2px; background: rgba(17,17,93,.12); border-radius: 2px; overflow: hidden }
+.progress span { display: block; height: 100%; background: var(--midnight); transform-origin: left; transform: scaleX(0) }
 .progress span.run { animation: fill var(--stage-ms, 3800ms) linear forwards }
-.scrub-note { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--hero-muted); text-align: center }
+.scrub-note { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #3c4058; text-align: center }
 
-/* sections */
-section { padding-block: 80px }
-section + section { border-top: 1px solid var(--line) }
-.section-head { max-width: 40rem; display: grid; gap: 14px; margin-bottom: 40px }
-.section-head h2 { font-size: clamp(32px, 4vw, 46px) }
-.section-head p { color: var(--muted); font-size: 17px }
-.primer { padding-block: 56px }
-.primer p { font-family: var(--serif); font-size: clamp(24px, 3vw, 34px); line-height: 1.35; max-width: 60rem; margin-inline: auto; text-align: center; text-wrap: balance }
-.primer p span { color: var(--muted) }
+/* concierge feed */
+.panel { width: min(400px, 100%); background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.9); border-radius: 24px; padding: 18px;
+  display: grid; gap: 12px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: 0 20px 50px rgba(17,17,93,.10) }
+.panel-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 12.5px; color: var(--muted) }
+.panel-head b { color: var(--midnight); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 11.5px }
+.live { display: inline-flex; align-items: center; gap: 6px } .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--gold) }
+.svcs { display: flex; flex-wrap: wrap; gap: 6px }
+.svcs span { font-size: 12px; background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px }
+.feed { display: grid; gap: 10px }
+.task { background: #fff; border-radius: 16px; padding: 13px 14px; display: grid; gap: 4px; font-size: 13.5px; box-shadow: 0 1px 2px rgba(17,17,93,.06), 0 6px 16px rgba(17,17,93,.06);
+  transition: opacity .5s ease, transform .5s ease }
+.task .row b { font-size: 14px }
+.task p { color: var(--muted) }
+.task.pending { opacity: .35; transform: scale(.98) }
+.task.pending .wait { visibility: hidden }
+.wait { font-size: 11px; border: 1px solid var(--gold); border-radius: 999px; padding: 2px 9px; white-space: nowrap }
 
-.leaks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px }
-.leak { display: grid; gap: 10px; align-content: start; border-top: 1px solid var(--gold); padding-top: 18px }
-.leak .when { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums }
-.leak h3 { font-size: 26px }
-.leak p { color: var(--muted) }
-.leak p b { color: var(--fg); font-weight: 600 }
+/* integration stack */
+.stack { width: min(380px, 100%); display: grid; gap: 14px }
+.note { background: #fff; border-radius: 20px; padding: 16px; display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 14px; align-items: center;
+  box-shadow: 0 0 0 6px rgba(255,255,255,.45), 0 12px 30px rgba(17,17,93,.10) }
+.note .badge { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--peri); color: var(--midnight) }
+.note .badge svg { width: 20px; height: 20px }
+.note b { font-size: 14.5px } .note p { font-size: 13px; color: var(--muted) }
 
-.how { margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; counter-reset: s }
-.how li { list-style: none; background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 26px; display: grid; gap: 10px; align-content: start }
-.how li::before { counter-increment: s; content: "Step " counter(s); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); font-weight: 600 }
-.how h3 { font-size: 26px }
-.how p { color: var(--muted) }
+/* stacking cards: each one sticks a little lower, so the label of the card underneath stays visible */
+/* All stacked cards share one height (--h): the room left under the three cards above the last one.
+   Equal heights keep a taller card from being pushed up over the labels at the end of the stack. */
+@media (min-width: 760px) and (min-height: 600px) {
+  .feat { position: sticky; top: calc(84px + var(--i, 0) * 64px); --h: min(640px, calc(100svh - 288px)); min-height: var(--h) }
+  .feat .feat-copy { padding: 30px 36px }
+  .feat .feat-visual { min-height: 0; padding-block: 24px }
+  .feat .screen { height: clamp(210px, calc(var(--h) - 140px), 520px) }
+  .feat .imsg-screen { height: clamp(250px, calc(var(--h) - 70px), 540px) }
+}
+/* short windows: smaller card headlines so the copy fits the shorter cards */
+@media (min-width: 760px) and (min-height: 600px) and (max-height: 760px) {
+  .feat-copy h2 { font-size: clamp(26px, 2.6vw, 34px) }
+  .feat-copy p:last-child { font-size: 15.5px; margin-top: 10px }
+}
 
-.mods { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; margin-top: 48px }
-.mods h4 { margin: 0 0 10px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted) }
-.mods ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px }
+/* text thread phone */
+.imsg { width: min(320px, 100%); border-radius: 46px; padding: 10px; background: rgba(255,255,255,.7); box-shadow: 0 0 0 1px rgba(255,255,255,.9), 0 30px 70px rgba(17,17,93,.16) }
+.imsg-screen { border-radius: 37px; background: #fff; height: 540px; display: flex; flex-direction: column; overflow: hidden; color: #111 }
+.sb { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px 0; font: 600 14.5px var(--sans) }
+.sb-r { display: flex; gap: 5px; align-items: center } .sb-r svg { height: 11px; width: auto; fill: currentColor }
+.ih { display: grid; grid-template-columns: 34px minmax(0, 1fr) 34px; align-items: start; padding: 12px 14px 6px }
+.circ { width: 34px; height: 34px; border-radius: 50%; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.10); display: grid; place-items: center; color: #222 }
+.circ svg { width: 18px; height: 18px }
+.who { display: grid; justify-items: center; gap: 4px }
+.av { width: 42px; height: 42px; border-radius: 50%; background: var(--midnight); color: #fff; display: grid; place-items: center; font: 600 14px var(--sans); letter-spacing: .02em }
+.name { font-size: 11.5px; font-weight: 600; background: #fff; border-radius: 999px; padding: 3px 10px; box-shadow: 0 2px 10px rgba(0,0,0,.08); white-space: nowrap }
+.thread { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 5px; padding: 8px 12px 10px; overflow: hidden; font-size: 13.5px; line-height: 1.32 }
+.ts { align-self: center; font-size: 10.5px; color: #8a8d99; margin: 8px 0 2px; text-align: center }
+.ts b { font-weight: 600 }
+.bub { max-width: 80%; padding: 8px 12px; border-radius: 18px }
+.bub.in { align-self: flex-start; background: #e9e9eb; border-bottom-left-radius: 6px }
+.bub.out { align-self: flex-end; background: #34c759; color: #fff; border-bottom-right-radius: 6px }
+.bub u { text-underline-offset: 2px }
+.ibar { display: flex; align-items: center; gap: 8px; padding: 0 12px 16px }
+.circ.sm { width: 30px; height: 30px; box-shadow: none; background: #f0f0f3; font-size: 18px; color: #777 }
+.ibar .field { flex: 1; border: 1px solid #e3e3e8; border-radius: 999px; padding: 6px 12px; font-size: 13px; color: #a3a3ab }
+@media (prefers-reduced-motion: no-preference) { .bub, .ts { animation: pop .45s cubic-bezier(.2,.7,.2,1) } }
 
-.guards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 48px }
-.guard { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 14px; padding-block: 20px; border-bottom: 1px solid var(--line) }
-.guard svg { width: 22px; height: 22px; color: var(--gold); margin-top: 3px }
-.guard h3 { font: 600 16px var(--sans) }
-.guard p { color: var(--muted); font-size: 15px; margin-top: 4px }
+/* channel tabs */
+.chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 28px }
+.chip { font: 500 14px var(--sans); color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 9px 16px; cursor: pointer;
+  box-shadow: 0 1px 2px rgba(17,17,93,.05) }
+.chip[aria-pressed="true"] { background: var(--midnight); border-color: var(--midnight); color: #fff }
+.chip small { font-size: 11px; opacity: .7; margin-left: 4px }
+.ch-stage { max-width: 860px; margin: 0 auto; border-radius: 30px; padding: 48px 20px; display: grid; place-items: center; overflow: hidden }
+.mock { width: min(330px, 100%); background: #fbfbfd; border-radius: 26px; padding: 14px; display: grid; gap: 10px; font-size: 13px;
+  box-shadow: 0 0 0 1px #dfe1ec, 0 30px 70px rgba(17,17,93,.18) }
+.mock .step { display: grid; gap: 8px }
 
-.price { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center }
-.plan { background: var(--hero-bg); color: var(--hero-fg); border-radius: 28px; padding: 36px; display: grid; gap: 18px;
-  box-shadow: inset 0 0 0 1px rgba(212,175,55,.5) }
-.amount { font-family: var(--serif); font-size: 72px; line-height: 1 }
-.amount small { font: 400 16px var(--sans); color: var(--hero-muted) }
-.plan ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px }
+/* statement */
+.statement { text-align: center; display: grid; justify-items: center; gap: 22px }
+.statement h2 { font-size: clamp(32px, 4.4vw, 56px); max-width: 16em }
+.statement h2 span { color: #8a8da3 }
+.statement p { color: var(--muted); font-size: 18px; max-width: 36em }
+
+/* trust cards */
+.trust { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px }
+.tcard { background: var(--peri); border-radius: 26px; padding: 30px; display: grid; gap: 10px; align-content: start }
+.tcard svg { width: 24px; height: 24px; color: var(--midnight) }
+.tcard h3 { font: 600 19px var(--sans); letter-spacing: -.01em; margin-top: 10px }
+.tcard p { color: var(--muted); font-size: 15.5px }
+
+/* pricing */
+.plan { max-width: 480px; margin: 0 auto; border-radius: 30px; padding: 36px; display: grid; gap: 18px; border: 1px solid var(--line); background: #fff;
+  box-shadow: 0 0 0 10px rgba(236,238,252,.8), 0 30px 70px rgba(17,17,93,.10) }
+.amount { font-family: var(--display); font-weight: 600; letter-spacing: -.04em; font-size: 68px; line-height: 1 }
+.amount small { font: 400 16px var(--sans); letter-spacing: 0; color: var(--muted) }
+.plan ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px }
 .plan li { display: flex; gap: 10px }
-.plan li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); margin-top: 9px; flex: none }
+.plan li::before { content: ""; flex: none; width: 18px; height: 18px; margin-top: 3px; border-radius: 50%; background: var(--gold)
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2311115D' stroke-width='3'%3E%3Cpath d='M6 12l4 4 8-8'/%3E%3C/svg%3E") center / 12px no-repeat }
+.plan .btn { justify-self: start }
 
-.faq { max-width: 46rem; display: grid }
-.faq details { border-bottom: 1px solid var(--line); padding-block: 18px }
-.faq summary { cursor: pointer; font-family: var(--serif); font-size: 24px; list-style: none; display: flex; justify-content: space-between; gap: 16px }
-.faq summary::after { content: "+"; color: var(--gold) }
+/* faq */
+.faq { max-width: 760px; margin: 0 auto }
+.faq details { border-bottom: 1px solid var(--line) }
+.faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 16px; padding-block: 18px; font-weight: 500; font-size: 17px }
+.faq summary::-webkit-details-marker { display: none }
+.faq summary::after { content: "+"; color: var(--muted); font-size: 22px; line-height: 1 }
 .faq details[open] summary::after { content: "−" }
-.faq p { color: var(--muted); margin-top: 10px }
+.faq p { color: var(--muted); padding-bottom: 18px; max-width: 40em }
 
-.join { background: var(--hero-bg); color: var(--hero-fg) }
-.join-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: start }
-.join h2 { font-size: clamp(36px, 4.5vw, 54px) }
-.join .lead { color: var(--hero-muted); font-size: 17px; margin-top: 18px; max-width: 30em }
-#form { display: grid; gap: 14px; background: rgba(251,251,242,.04); border: 1px solid rgba(212,175,55,.4); border-radius: 24px; padding: 28px }
+/* closing band + footer */
+.closing { padding: 110px 20px 0; text-align: center }
+.closing h2 { font-size: clamp(38px, 5vw, 64px) }
+.closing .primer { color: var(--muted); font-size: 18px; max-width: 32em; margin: 16px auto 0; text-wrap: balance }
+.closing .btn { margin-top: 28px }
+.closing .fine { margin-top: 14px; font-size: 13.5px; color: var(--muted) }
+footer { border-top: 1px solid rgba(17,17,93,.25); max-width: 1160px; margin: 96px auto 0; padding: 22px 0 30px; display: grid; justify-items: center; gap: 8px; font-size: 14px }
+footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 26px }
+footer nav a { text-decoration: none }
+footer small { color: var(--muted); font-size: 12px }
+
+/* join dialog */
+dialog { border: 0; border-radius: 26px; padding: 30px; width: min(560px, calc(100% - 32px)); color: var(--ink); box-shadow: 0 40px 100px rgba(17,17,93,.3) }
+dialog::backdrop { background: rgba(17,17,93,.35); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px) }
+dialog h2 { font-size: 30px; padding-right: 36px }
+dialog .lead { color: var(--muted); margin: 10px 0 20px }
+.x { position: absolute; top: 18px; right: 18px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: var(--soft); font-size: 20px; cursor: pointer; color: var(--ink) }
+#form { display: grid; gap: 14px }
 .fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px }
-label { display: grid; gap: 6px; font-size: 13px; color: var(--hero-muted) }
-input, select { font: 15px var(--sans); color: var(--hero-fg); background: rgba(251,251,242,.06); border: 1px solid rgba(251,251,242,.22);
-  border-radius: 12px; padding: 12px 14px; width: 100%; min-width: 0 }
-select option { color: #16163a }
-.form-note { font-size: 12.5px; color: var(--hero-muted) }
-.msg { font-size: 14px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--gold) }
-footer { padding-block: 28px; font-size: 12.5px; color: var(--muted) }
+label { display: grid; gap: 6px; font-size: 13px; color: var(--muted) }
+input, select { font: 15px var(--sans); color: var(--ink); background: #fff; border: 1px solid #d9dbe6; border-radius: 12px; padding: 12px 14px; width: 100%; min-width: 0 }
+#form .btn { justify-self: start }
+.form-note { font-size: 12.5px; color: var(--muted) }
+.msg { font-size: 14px; padding: 12px 14px; border-radius: 12px; background: var(--peri) }
 
 @media (max-width: 900px) {
-  .hero-grid, .price, .join-grid { grid-template-columns: minmax(0, 1fr); gap: 40px }
-  .leaks, .how { grid-template-columns: minmax(0, 1fr) }
-  .mods { grid-template-columns: repeat(2, minmax(0, 1fr)) }
-  .guards { grid-template-columns: minmax(0, 1fr) }
+  .trust { grid-template-columns: minmax(0, 1fr) }
 }
-@media (max-width: 900px) {
-  .channels { grid-template-columns: repeat(2, minmax(0, 1fr)) }
-  .calc { grid-template-columns: minmax(0, 1fr) }
+/* cards keep text-left / picture-right down to 760px wide, so they can still stack */
+@media (max-width: 759px) {
+  .feat { grid-template-columns: minmax(0, 1fr) }
+  .feat-copy { gap: 20px; padding: 32px 28px }
+  .feat-visual { min-height: 0 }
 }
 @media (max-width: 600px) {
-  .channels { grid-template-columns: minmax(0, 1fr) }
-  .panel-head { flex-wrap: wrap }
   input, select { font-size: 16px } /* below 16px, iOS zooms the page on focus */
-  .hero { padding-block: 22px 56px } .hero-grid { margin-top: 36px }
-  .hero .cta-row .btn { width: 100% }
-  .amount { font-size: 60px }
-  .faq summary { font-size: 21px }
-  footer { padding-bottom: 96px }
+  .hero { padding-top: 120px; min-height: 0 }
+  .announce { font-size: 12.5px; padding-inline: 14px; text-wrap: balance }
+  section { padding-block: 56px }
+  .fields { grid-template-columns: minmax(0, 1fr) }
+  .screen { height: 520px }
+  .ch-stage { padding: 32px 14px }
 }
-@media (max-width: 520px) { .fields { grid-template-columns: minmax(0, 1fr) } .screen { height: 540px } section { padding-block: 60px } }
-/* phone-only sticky CTA; hides while the hero button or the form is on screen */
-.sticky-cta { display: none }
-@media (max-width: 600px) {
-  .sticky-cta { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
-    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); background: var(--hero-bg);
-    border-top: 1px solid rgba(212,175,55,.4); transition: transform .3s ease }
-  .sticky-cta .btn { width: 100% }
-  .sticky-cta.away { transform: translateY(110%) }
-}
-/* motion: hero loads in sequence, the phone floats and plays the visit, sections rise as they scroll in */
+/* motion: hero loads in sequence, the phone floats and plays the visit, cards rise as they scroll in */
 @media (prefers-reduced-motion: no-preference) {
-  .card.swap { animation: rise .5s cubic-bezier(.2,.7,.2,1) }
+  .card.swap, .mock.swap { animation: rise .5s cubic-bezier(.2,.7,.2,1) }
   .sms.swap { animation: pop .5s cubic-bezier(.2,.7,.2,1) }
-  .hero .logo, .hero-copy > * { animation: up .9s cubic-bezier(.2,.7,.2,1) both }
-  .hero-copy > :nth-child(1) { animation-delay: .15s } .hero-copy > :nth-child(2) { animation-delay: .3s }
-  .hero-copy > :nth-child(3) { animation-delay: .45s } .hero-copy > :nth-child(4) { animation-delay: .6s }
-  .phone { animation: up 1.1s .35s cubic-bezier(.2,.7,.2,1) both, float 7s 1.5s ease-in-out infinite }
-  .hero h1 em { background: linear-gradient(100deg, var(--gold) 40%, #f4e3a6 50%, var(--gold) 60%) 0 0 / 250% 100%;
-    -webkit-background-clip: text; background-clip: text; color: transparent; animation: sheen 6s 1.2s ease-in-out infinite }
-  .btn-gold { transition: transform .2s ease, box-shadow .2s ease }
-  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(212,175,55,.35) }
+  .hero-in > * { animation: up .9s cubic-bezier(.2,.7,.2,1) both }
+  .hero-in > :nth-child(2) { animation-delay: .12s } .hero-in > :nth-child(3) { animation-delay: .24s }
+  .hero-in > :nth-child(4) { animation-delay: .36s } .hero-in > :nth-child(5) { animation-delay: .48s }
+  .phone { animation: float 7s 1s ease-in-out infinite }
+  .live::before { animation: blink 1.6s ease-in-out infinite }
+  .earned { animation: pulse 2.4s 1.2s ease-in-out infinite }
+  .tap { animation: tap 2.4s 1.8s ease-in-out infinite }
+  .tap::after { animation: ripple 2.4s 1.8s ease-out infinite }
+  .hero-in > .earned { animation: up .9s cubic-bezier(.2,.7,.2,1) both, pulse 2.4s 1.4s ease-in-out infinite }
+  .btn { transition: transform .2s ease, box-shadow .2s ease }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(17,17,93,.25) }
   @supports (animation-timeline: view()) {
-    .section-head, .primer p, .leak, .channel, .how li, .guard, .plan, .calc-out, .faq details, .join-grid > * {
-      animation: reveal linear both; animation-timeline: view(); animation-range: entry 0% entry 45% }
+    .center-head, .tcard, .plan, .faq details, .statement, .ch-stage {
+      animation: reveal linear both; animation-timeline: view(); animation-range: entry 0% entry 40% }
   }
 }
-@media (prefers-reduced-motion: reduce) { .progress { display: none } }
+@media (prefers-reduced-motion: reduce) { .progress { display: none } html { scroll-behavior: auto } }
 @keyframes rise { from { opacity: 0; transform: translateY(14px) } to { opacity: 1; transform: none } }
 @keyframes pop { from { opacity: 0; transform: translateY(8px) scale(.97) } to { opacity: 1; transform: none } }
-@keyframes up { from { opacity: 0; transform: translateY(28px) } to { opacity: 1; transform: none } }
-@keyframes reveal { from { opacity: .15; transform: translateY(36px) } to { opacity: 1; transform: none } }
+@keyframes up { from { opacity: 0; transform: translateY(24px) } to { opacity: 1; transform: none } }
+@keyframes reveal { from { opacity: .2; transform: translateY(32px) } to { opacity: 1; transform: none } }
 @keyframes float { 50% { transform: translateY(-10px) } }
-@keyframes sheen { 0%, 60% { background-position: 100% 0 } 100% { background-position: -50% 0 } }
+@keyframes blink { 50% { opacity: .25 } }
+@keyframes tap { 0%, 70%, 100% { transform: scale(1) } 76% { transform: scale(.86) translateY(1px) } 84% { transform: scale(1.08) } 92% { transform: scale(1) } }
+@keyframes ripple { 0%, 74% { transform: translate(-50%, -50%) scale(0); opacity: 0 } 77% { transform: translate(-50%, -50%) scale(.6); opacity: .55 } 100% { transform: translate(-50%, -50%) scale(4.5); opacity: 0 } }
+@keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1 } 50% { transform: scale(1.05); opacity: .78 } }
 @keyframes fill { to { transform: scaleX(1) } }
 </style>
 
-<header class="hero">
+
+<header class="top">
   <div class="wrap">
-    <div class="logo" role="img" aria-label="First Access"></div>
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <p class="eyebrow">For professional services</p>
-        <h1 style="margin-top:16px">Expand your trust into <em>another channel of income</em>.</h1>
-        <p class="sub">Clients already ask what to use, when to come back and where to go next. First Access puts your answers on one branded card after every visit, with your product links, add-ons, tips and rebooking built in. It runs from your booking system, so your team does nothing extra.</p>
-        <div class="cta-row">
-          <a class="btn btn-gold" href="#join">Claim a founding spot</a>
-          <p class="fine"><b>You don't pay until it earns you your first $99.</b><br>Then $99/mo per studio, locked for founding studios.</p>
-        </div>
-      </div>
-      <div class="stage">
-        <div class="phone" aria-live="polite">
-          <div class="screen">
-            <div class="sms" id="sms"></div>
-            <div class="card" id="card"></div>
-          </div>
-        </div>
-        <div class="progress" aria-hidden="true"><span id="bar"></span></div>
-        <p class="scrub-note" id="note"></p>
-      </div>
-    </div>
+    <a href="#" aria-label="First Access home"><span class="logo"></span></a>
+    <a class="btn sm" href="#join">Join the waitlist</a>
   </div>
 </header>
 
+<div class="hero glow">
+  <div class="hero-in">
+    <a class="announce" href="#join">Now in early access <span aria-hidden="true">→</span></a>
+    <h1>Better visits. Better results.<br>More revenue.</h1>
+    <p class="sub">Your clients already ask you what to use and when to come back. First Access turns that advice into commissions, add-ons and rebookings, sent from the booking you already have.</p>
+    <a class="btn" href="#join">Join the waitlist</a>
+    <p class="earned">If it doesn't earn you <strong>$100</strong>, you never pay a cent.</p>
+    <p class="fine">No app to download. Clients just <span class="tap">tap</span> a link in a text.</p>
+    <a class="more" href="#learn">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </div>
+</div>
+
 <main>
-  <section class="primer">
+  <section class="leak-sec">
     <div class="wrap">
-      <p>When a client asks which serum to buy, you answer. When they ask when to come back, you answer. <span>You're already their most trusted advisor. Right now, that advice pays someone else.</span></p>
-    </div>
-  </section>
-
-  <section class="concierge">
-    <div class="wrap cg">
-      <div>
-        <p class="eyebrow">Your AI Concierge</p>
-        <h2 style="margin-top:14px">AI capabilities that matter, <em>and that you own</em></h2>
-        <p class="lead">Your Concierge learns your menu, your instructions and your voice. Everything it writes starts from what you give it, so it sounds like you and stays yours.</p>
-        <ul>
-          <li><span><b>Prepares every client</b>It writes prep and aftercare for each service on your menu, in your voice. You approve it once.</span></li>
-          <li><span><b>Finds the programs that pay</b>It identifies affiliate programs for the brands you already recommend and drafts the applications for you.</span></li>
-          <li><span><b>Matches products to your services</b>It pairs the right products with each professional service you offer, timed to recovery, and flags any that clash.</span></li>
-          <li><span><b>Remembers every client</b>When a client is due, or has drifted, it drafts a personal note in your voice about their last visit.</span></li>
-        </ul>
-        <p class="approve"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>It only uses what you've approved. Your instructions, your voice and your client list stay yours.</p>
-      </div>
-      <div class="panel" aria-label="Example: the AI Concierge working for a sample studio">
-        <div class="panel-head"><b>AI Concierge</b><span class="live">Working for Company Med Spa</span></div>
-        <div class="svcs" aria-label="Your services"><span>Botox</span><span>HydraFacial</span><span>Lip filler</span><span>Chemical peel</span></div>
-        <div class="feed" id="feed" aria-live="polite"></div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">Your trust already moves money</p>
-        <h2>Clients act on your advice. Someone else gets paid.</h2>
-        <p>Your expertise doesn't stop at checkout, and neither does the spending it drives. Here's where that money goes today.</p>
+      <div class="left-head">
+        <p class="eyebrow">Where the money goes</p>
+        <h2>Your clients spend money after every visit. Most of it goes somewhere else.</h2>
       </div>
       <div class="leaks">
-        <div class="leak">
-          <span class="when">Day of the visit</span>
-          <h3>The tip they meant to leave</h3>
-          <p>Few clients carry cash anymore. The card offers <b>a tip by Zelle or Venmo</b> after the visit, sent to the studio or straight to the practitioner.</p>
-        </div>
-        <div class="leak">
-          <span class="when">Days 3–5</span>
-          <h3>The serum they buy online</h3>
-          <p>They buy what you tell them to use, through someone else's link. The card recommends <b>your picks, with your affiliate links</b>, timed to their healing stage. You keep 100% of the commission.</p>
-        </div>
-        <div class="leak">
-          <span class="when">Day 76 of 90</span>
-          <h3>The rebook that went elsewhere</h3>
-          <p>You set a rebook interval in days for each treatment. Two weeks before they're due, they get a text, and <b>the card opens on your open times</b>.</p>
-        </div>
+        <div class="leak"><span class="when">After the visit</span><h3>The aftercare they buy online</h3><p>They buy what you told them to use, through someone else's link.</p></div>
+        <div class="leak"><span class="when">Before the visit</span><h3>The add-on they'd have said yes to</h3><p>If anyone had asked before the visit.</p></div>
+        <div class="leak"><span class="when">At checkout</span><h3>The tip they meant to leave</h3><p>Few clients carry cash anymore.</p></div>
+        <div class="leak"><span class="when">When it's due</span><h3>The rebook that went somewhere else</h3><p>Because nobody reminded them when it was time.</p></div>
       </div>
+    </div>
+  </section>
+
+  <section id="learn">
+    <div class="wrap feats">
+      <article class="feat" style="--i:0">
+        <div class="feat-copy">
+          <p class="eyebrow">Professional recommendations</p>
+          <div>
+            <h2>Your recommendations. Your commission.</h2>
+            <p>Clients buy what you tell them to use, usually through someone else’s link. First Access puts your product picks on their card, matched to the service they had and the day of recovery, with your affiliate links attached. Your Concierge finds the affiliate products and programs that fit each service. You keep 100% of the commission.</p>
+          </div>
+        </div>
+        <div class="feat-visual glow-b">
+          <div class="stack">
+            <div class="note"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 016 0v2"/></svg></span><div><b>Picked by Company Med Spa</b><p>Hyaluronic serum, matched to Day 3 after a HydraFacial. Conflict-checked.</p></div></div>
+            <div class="note"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/></svg></span><div><b>Affiliate program found</b><p>The brand’s own program. Application drafted for you.</p></div></div>
+            <div class="note"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M14.5 9.5c-.5-.9-1.5-1.3-2.5-1.3-1.4 0-2.5.8-2.5 1.9 0 2.6 5 1.4 5 4 0 1.1-1.1 1.9-2.5 1.9-1.1 0-2.1-.5-2.6-1.4M12 6.5v1.7M12 15.8v1.7"/></svg></span><div><b>Commission earned</b><p>A client bought your SPF pick. Paid to you by the program.</p></div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="feat" style="--i:1">
+        <div class="feat-copy">
+          <p class="eyebrow">Text it</p>
+          <div>
+            <h2>Your clients hear from you at the right moment</h2>
+            <p>Your team doesn’t lift a finger. Every booking sends the right text at the right time: the confirmation, prep, aftercare and the rebook. Clients tap one link, with no app to download, and your team does nothing extra. Texts say “your visit,” never the treatment.</p>
+          </div>
+        </div>
+        <div class="feat-visual glow-b">
+          <div class="imsg" aria-label="Example text thread between a sample studio and client">
+            <div class="imsg-screen">
+              <div class="sb"><span>9:41</span><span class="sb-r"><svg viewBox="0 0 18 12" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg viewBox="0 0 16 12" aria-hidden="true"><path d="M8 11.5l2.2-2.6a3.2 3.2 0 00-4.4 0zM3.4 6.5a6.6 6.6 0 019.2 0l1.4-1.6a8.8 8.8 0 00-12 0zM.2 3.3a11 11 0 0115.6 0L17 1.9A13 13 0 00-1 1.9z"/></svg><svg viewBox="0 0 26 12" aria-hidden="true"><rect x=".5" y=".5" width="22" height="11" rx="3.5" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="19" height="8" rx="2"/><rect x="23.5" y="4" width="2" height="4" rx="1" opacity=".4"/></svg></span></div>
+              <div class="ih">
+                <span class="circ" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 5l-7 7 7 7"/></svg></span>
+                <span class="who"><span class="av">CM</span><span class="name">Company Med Spa ›</span></span>
+                <span class="circ" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="12" height="10" rx="2"/><path d="M15 11l6-3v8l-6-3"/></svg></span>
+              </div>
+              <div class="thread" id="thread" aria-live="polite"></div>
+              <div class="ibar" aria-hidden="true"><span class="circ sm">+</span><span class="field">Text Message</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="feat" style="--i:2">
+        <div class="feat-copy">
+          <p class="eyebrow">Before and after</p>
+          <div>
+            <h2>Fewer no-shows. Fewer 10pm “is this normal?” texts.</h2>
+            <p>Clients get prep for their service, like pausing retinol before a laser treatment, then aftercare day by day as they recover. One text link, no app.</p>
+          </div>
+        </div>
+        <div class="feat-visual glow-b">
+          <div class="stage">
+            <div class="phone" aria-live="polite">
+              <div class="screen">
+                <div class="sms" id="sms"></div>
+                <div class="card" id="card"></div>
+              </div>
+            </div>
+            <div class="progress" aria-hidden="true"><span id="bar"></span></div>
+            <p class="scrub-note" id="note"></p>
+          </div>
+        </div>
+      </article>
+
+      <article class="feat" style="--i:3">
+        <div class="feat-copy">
+          <p class="eyebrow">Your Concierge</p>
+          <div>
+            <h2>Your judgment, without the busywork</h2>
+            <p>It finds the affiliate products and programs that fit each service, drafts replies to your reviews and writes rebooking notes in your voice. It suggests, you approve, and nothing reaches a client until you do.</p>
+          </div>
+        </div>
+        <div class="feat-visual glow-b">
+          <div class="panel" aria-label="Example: the Concierge working for a sample studio">
+            <div class="panel-head"><b>Your Concierge</b><span class="live">Working for Company Med Spa</span></div>
+            <div class="svcs" aria-label="Services"><span>Botox</span><span>HydraFacial</span><span>Fraxel</span><span>Lip filler</span></div>
+            <div class="feed" id="feed" aria-live="polite"></div>
+          </div>
+        </div>
+      </article>
     </div>
   </section>
 
   <section>
     <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">New channels of income</p>
-        <h2>Five ways your trust starts paying you</h2>
-        <p>Each channel is a module you switch on. Your clients see only the ones you choose.</p>
+      <div class="center-head">
+        <h2>Every visit, start to finish</h2>
+        <p>First Access runs the whole visit cycle for every appointment. Switch on the steps you want.</p>
       </div>
-      <div class="channels">
-        <div class="channel"><h3>Retail commissions</h3><p>Your product picks go out after every visit with your affiliate links attached.</p><p class="keep">100% of commissions</p></div>
-        <div class="channel"><h3>Your own shelf</h3><p>Sell the products you stock. Clients shop your store link or reserve an item for pickup at the front desk.</p><p class="keep">The full sale</p></div>
-        <div class="channel"><h3>Add-ons before the visit</h3><p>While clients prep, the card suggests upgrades that fit the treatment, like a lip flip with Botox. Their choices go straight to your booking system.</p><p class="keep">A bigger ticket</p></div>
-        <div class="channel"><h3>Tips</h3><p>A tip step after the visit, with Venmo pre-filled and Zelle one tap away. Tips go to the studio account or to each practitioner.</p><p class="keep">Every tip, no processing fee</p></div>
-        <div class="channel"><h3>Rebookings on time</h3><p>You set a rebook interval for each treatment. Clients get a text two weeks before they're due, with your open times on the card.</p><p class="keep">The next visit</p></div>
-        <div class="channel soon"><span class="soon-tag">Coming soon</span><h3>Local ad network</h3><p>Earn a share when non-competing local businesses place a sponsored offer on your cards. You approve every advertiser.</p></div>
-      </div>
+      <div class="chips" id="chips" role="group" aria-label="Steps of the visit"></div>
+      <div class="ch-stage glow-b"><div class="mock" id="ch-mock" aria-live="polite"></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap statement">
+      <p class="eyebrow">Advice from the chair</p>
+      <h2>The professional who did the treatment <span>should recommend what comes after it.</span></h2>
+      <p>Right now, clients often get that advice from people who never treated them. First Access puts your recommendations in their hands, timed to their services.</p>
     </div>
   </section>
 
   <section>
     <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">Run your numbers</p>
-        <h2>What could your trust earn each month?</h2>
-        <p>Enter your own numbers. The starting values are placeholders for a mid-size studio, not results from real studios.</p>
+      <div class="center-head">
+        <h2>Your clients trust you. We keep it that way.</h2>
+        <p>Every recommendation is checked, disclosed and approved by you.</p>
       </div>
-      <div class="calc">
-        <form class="calc-in" id="calc" onsubmit="return false">
-          <label for="c-visits">Visits per month<input id="c-visits" type="number" min="0" value="120" inputmode="numeric"></label>
-          <label for="c-ticket">Average visit ($)<input id="c-ticket" type="number" min="0" value="350" inputmode="numeric"></label>
-          <label for="c-buy">Clients who buy a pick (%)<input id="c-buy" type="number" min="0" max="100" value="10" inputmode="numeric"></label>
-          <label for="c-comm">Commission per purchase ($)<input id="c-comm" type="number" min="0" value="8" inputmode="numeric"></label>
-          <label for="c-add">Clients who add an add-on (%)<input id="c-add" type="number" min="0" max="100" value="8" inputmode="numeric"></label>
-          <label for="c-addv">Average add-on ($)<input id="c-addv" type="number" min="0" value="60" inputmode="numeric"></label>
-          <label for="c-rebook">Extra rebooks per month<input id="c-rebook" type="number" min="0" value="3" inputmode="numeric"></label>
-        </form>
-        <div class="calc-out" aria-live="polite">
-          <div class="row"><span>Retail commissions</span><span id="o-retail"></span></div>
-          <div class="row"><span>Add-ons</span><span id="o-add"></span></div>
-          <div class="row"><span>Extra rebookings</span><span id="o-rebook"></span></div>
-          <div class="row total"><span>Estimated per month</span></div>
-          <div class="big" id="o-total"></div>
-          <p class="mini" id="o-vs"></p>
-          <p class="mini">This is an estimate from your inputs, not a promise of results. Tips aren't counted because they go to your team.</p>
-        </div>
+      <div class="trust">
+        <div class="tcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="8" r="4"/><path d="M3 21c1.3-3.6 3.9-5.5 7-5.5M15 18l2 2 4-4"/></svg><h3>Approved by you</h3><p>Your Concierge suggests. You approve. Nothing reaches a client, and no review reply posts, until you say so.</p></div>
+        <div class="tcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg><h3>Honest by design</h3><p>Every pick is conflict-checked, like no retinol right after injectables, and carries a commission disclosure. Every client gets the same chance to post a review.</p></div>
+        <div class="tcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg><h3>Private and compliant</h3><p>Texts go only to clients who opted in and say “your visit,” never the treatment. One STOP ends them. Client details are never sold.</p></div>
       </div>
     </div>
   </section>
 
-  <section>
+  <section id="pricing">
     <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">How it works</p>
-        <h2>Set up once. Every booking does the rest.</h2>
-      </div>
-      <ul class="how">
-        <li><h3>Connect your booking system</h3><p>Square and Google Calendar at launch. First Access reads appointments, first names and mobile numbers. It never changes a booking or sees payment details.</p></li>
-        <li><h3>Choose your modules</h3><p>Turn on what fits your studio. Turn a module off and its step disappears from every card.</p></li>
-        <li><h3>Every booking sends a card</h3><p>Booking a visit sends the card. Checkout switches it to aftercare. One link the whole way, and it updates itself.</p></li>
-      </ul>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">Trust is the asset</p>
-        <h2>We protect the trust that earns for you.</h2>
-        <p>This income lasts only as long as clients keep trusting you. These rules are built into every card, to protect that trust and your license.</p>
-      </div>
-      <div class="guards">
-        <div class="guard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="3"/><path d="M9 8h6M9 12h3"/></svg><div><h3>No treatment names in texts</h3><p>Texts say “your visit.” Details show up only inside the client's card.</p></div></div>
-        <div class="guard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg><div><h3>Consent first, STOP always works</h3><p>Only clients who agreed to texts get them. One STOP reply ends all of them.</p></div></div>
-        <div class="guard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg><div><h3>Every rating can be posted</h3><p>There's no review gating. The AI helper drafts only from the client's own answers, and they edit it before posting.</p></div></div>
-        <div class="guard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><div><h3>You approve every AI suggestion</h3><p>Product matches and affiliate applications stay drafts until you sign off. Ingredient conflicts get flagged.</p></div></div>
-        <div class="guard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg><div><h3>Disclosures are built in</h3><p>Every product pick carries a short affiliate disclosure, as the FTC requires.</p></div></div>
-        <div class="guard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg><div><h3>Read-only on your calendar</h3><p>It never moves or cancels an appointment and never touches card payments.</p></div></div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap price">
-      <div class="section-head" style="margin:0">
-        <p class="eyebrow">Pricing</p>
-        <h2>Free until it pays for itself.</h2>
-        <p>You pay nothing until First Access earns you your first $99. After that, it's one plan with every channel, and founding studios keep this rate for as long as they stay. They also choose which booking systems we connect after Square and Google Calendar.</p>
+      <div class="center-head">
+        <h2>If it doesn't earn you $100, you never pay</h2>
+        <p>Once it has, it's $99/mo with every step of the visit cycle. Founding businesses keep that rate for as long as they stay, and it ends when early access closes.</p>
+        <p class="example">Example: one extra rebooking a week at $350 is about $1,400 a month.</p>
       </div>
       <div class="plan">
         <p class="eyebrow">Founding studio</p>
         <p class="amount">$99 <small>/ month per studio</small></p>
         <ul>
-          <li><b>Free until it earns you your first $99</b></li>
-          <li>A client card for every booking</li>
-          <li>All modules, including your AI Concierge</li>
-          <li>Your commissions are 100% yours</li>
+          <li><b>Nothing to pay until it's earned you $100</b></li>
+          <li>A card for every appointment</li>
+          <li>Prep, aftercare, picks, reviews, rebooking and tips</li>
+          <li>Your affiliate commissions and tips are 100% yours</li>
           <li>Rate locked for as long as you stay</li>
+          <li>You choose which booking systems we connect next</li>
         </ul>
-        <a class="btn btn-gold" href="#join">Claim a founding spot</a>
+        <a class="btn" href="#join">Join the waitlist</a>
       </div>
     </div>
   </section>
 
-  <section>
+  <section id="faq">
     <div class="wrap">
-      <div class="section-head"><p class="eyebrow">Questions owners ask</p><h2>Before you sign up</h2></div>
+      <div class="center-head"><h2>Questions owners ask</h2></div>
       <div class="faq">
-        <details><summary>How do I earn from product recommendations?</summary><p>You join affiliate programs such as Amazon Associates, ShopMy, LTK or a brand's own program. First Access helps you find and apply to them, and the programs pay commissions to you directly.</p></details>
+        <details><summary>Will my clients feel sold to?</summary><p>No. Recommendations show up only where they fit the service and the day of recovery, with an honest disclosure. It reads like the care you already give, not a sales pitch.</p></details>
+        <details><summary>What is First Access?</summary><p>A better experience around every appointment, and more revenue from it. Every booking sends your client one card with prep before the visit, aftercare after it, product picks from you, a review step and their next booking.</p></details>
         <details><summary>Do my clients need to download an app?</summary><p>No. They tap a link in a text and the card opens in their phone's browser. They use the same link from booking through rebooking.</p></details>
-        <details><summary>Will this mess with my booking system?</summary><p>No. First Access reads appointments, first names and mobile numbers. It can't change or cancel a booking, and it never sees payment details.</p></details>
-        <details><summary>Is it allowed to ask clients for reviews?</summary><p>Yes, if every client gets the same chance to post, whatever their rating. That's how First Access works. Yelp discourages asking for reviews, so Yelp is a separate switch, and the setting explains the risk before you turn it on.</p></details>
-        <details><summary>My booking system isn't Square. Can I still join?</summary><p>Yes. Google Calendar works with any studio, and founding studios tell us which systems to connect next. Pick yours in the form below.</p></details>
-        <details><summary>When do I start paying?</summary><p>Only after First Access has earned you $99. Your dashboard adds up the add-ons, rebookings and product sales that come through your client cards. Once that total passes $99, your $99/mo plan starts. Until then, it's free.</p></details>
+        <details><summary>Will it message my clients without asking?</summary><p>No. Only clients who agreed to texts get them, and only what you've approved. You approve prep and aftercare once per service, and every product pick, review reply and rebooking note before it goes out.</p></details>
+        <details><summary>Which booking systems does it work with?</summary><p>Square and Google Calendar at launch. First Access reads appointments, first names and mobile numbers. It never changes a booking and never sees payment details. Founding studios choose which systems we connect next.</p></details>
+        <details><summary>What kinds of businesses is it for?</summary><p>Any small beauty, wellness or fitness business where a professional performs the service: salons, barbers, nails, lash and brow, med spas, spas, massage, physical therapy, chiropractic, yoga, pilates, personal training and more. Founding spots open first for med spas and salons.</p></details>
+        <details><summary>How do product recommendations earn money?</summary><p>You earn affiliate commissions through a brand's or retailer's program, or you sell the products you already stock. Your Concierge finds the products and programs that fit each service. Every pick carries a disclosure, as the FTC requires.</p></details>
+        <details><summary>How do reviews work?</summary><p>Every client gets the same chance to post, whatever their rating. The review helper starts from the client's own words, and low ratings also get a private line to you. Your Concierge drafts replies to public reviews in your voice, and you approve each one. Yelp discourages asking for reviews, so Yelp is a separate switch, and the setting explains the risk before you turn it on.</p></details>
+        <details><summary>How much does it cost?</summary><p>Nothing until First Access has earned you $100. Your dashboard adds up the add-ons, rebookings and sales of your own products that come through your cards. Once that passes $100, the $99/mo plan starts.</p></details>
         <details><summary>When can I start?</summary><p>Founding studios get access first. We'll email you before your setup opens. Joining the list costs nothing.</p></details>
       </div>
     </div>
   </section>
-
-  <section class="join" id="join">
-    <div class="wrap join-grid">
-      <div>
-        <p class="eyebrow">Founding studios</p>
-        <h2 style="margin-top:14px">Expand your trust into another channel of income.</h2>
-        <p class="lead">Claim a spot to get access first and tell us which booking system to connect next. You pay nothing until First Access earns you your first $99. After that, it's $99/mo, locked for founding studios.</p>
-      </div>
-      <form id="form" novalidate>
-        <div class="fields">
-          <label for="f-name">Your name<input id="f-name" name="name" autocomplete="name" required></label>
-          <label for="f-studio">Studio name<input id="f-studio" name="studio" autocomplete="organization" required></label>
-          <label for="f-email">Email<input id="f-email" name="email" type="email" autocomplete="email" required></label>
-          <label for="f-city">City<input id="f-city" name="city" autocomplete="address-level2"></label>
-        </div>
-        <label for="f-booking">Booking system
-          <select id="f-booking" name="booking" required>
-            <option value="">Choose one</option>
-            <option>Square</option><option>Google Calendar</option><option>Vagaro</option>
-            <option>Boulevard</option><option>Mindbody</option><option>Other</option>
-          </select>
-        </label>
-        <button class="btn btn-gold" type="submit">Claim a founding spot</button>
-        <p class="form-note">No card needed. We email you before your setup opens. Prefer email? Write to jomar@bowtiefunnel.com.</p>
-        <p class="msg" id="msg" hidden></p>
-      </form>
-    </div>
-  </section>
 </main>
-<div class="sticky-cta away" id="sticky"><a class="btn btn-gold" href="#join">Claim a founding spot</a></div>
-<footer><div class="wrap" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px"><div class="logo" role="img" aria-label="First Access" style="width:96px"></div><span>FirstAccess.io · The sample card uses a fictional studio and client.</span></div></footer>
+
+<div class="closing glow glow-c">
+  <h2>Every appointment, worth more.</h2>
+  <p class="primer">Do your clients ask what to use after their visit? Then you’re already doing the hard part. Let it pay you.</p>
+  <a class="btn" href="#join">Join the waitlist</a>
+  <p class="earned">If it doesn't earn you <strong>$100</strong>, you never pay a cent.</p>
+  <p class="fine">No app for your clients to download.</p>
+  <footer>
+    <nav><a href="#faq">FAQ</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="sms-terms.html">SMS Terms</a><a href="affiliate-disclosure.html">Affiliate Disclosure</a><a href="mailto:jomar@bowtiefunnel.com">Contact</a></nav>
+    <small>FirstAccess.io · The sample card uses a fictional studio and client.</small>
+  </footer>
+</div>
+
+<dialog id="join" aria-labelledby="join-title">
+  <button class="x" type="button" aria-label="Close" id="join-x">×</button>
+  <h2 id="join-title">Join the waitlist</h2>
+  <p class="lead">Studios on the list get access first and tell us which booking system to connect next. You pay nothing until First Access has earned you $100. After that, it's $99/mo, locked for founding studios.</p>
+  <form id="form" novalidate>
+    <div class="fields">
+      <label for="f-name">Your name<input id="f-name" name="name" autocomplete="name" required></label>
+      <label for="f-studio">Studio name<input id="f-studio" name="studio" autocomplete="organization" required></label>
+      <label for="f-email">Email<input id="f-email" name="email" type="email" autocomplete="email" required></label>
+      <label for="f-city">City<input id="f-city" name="city" autocomplete="address-level2"></label>
+    </div>
+    <label for="f-booking">Booking system
+      <select id="f-booking" name="booking" required>
+        <option value="">Choose one</option>
+        <option>Square</option><option>Google Calendar</option><option>Vagaro</option>
+        <option>Boulevard</option><option>Mindbody</option><option>Other</option>
+      </select>
+    </label>
+    <button class="btn" type="submit">Join the waitlist</button>
+    <p class="form-note">We email you before your setup opens. Prefer email? Write to jomar@bowtiefunnel.com.</p>
+    <p class="msg" id="msg" hidden></p>
+  </form>
+</dialog>
 
 <script>
 const ICON = {
@@ -515,7 +576,8 @@ const ICON = {
   cal: '<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>'
 };
 const svg = k => `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">${ICON[k]}</svg>`;
-const STEPS = [['Prep checklist','list'],['Add to your visit','plus'],['Healing timeline','clock'],['Products from Elena','bag'],['Leave a Google review','star'],['Leave a tip','heart'],['Book your next visit','cal']];
+// Picks are the studio's (AI suggests, studio approves), so no practitioner name on them.
+const STEPS = [['Prep checklist','list'],['Add to your visit','plus'],['Healing timeline','clock'],['Picks for your recovery','bag'],['Leave a Google review','star'],['Leave a tip','heart'],['Book your next visit','cal']];
 const VISIT = ['Botox: forehead & frown lines', 'Sat, Oct 17 · 2:00 PM · with Elena Ruiz, RN'];
 
 const STAGES = [
@@ -531,14 +593,15 @@ const STAGES = [
   { tab: 'Day 4', open: [3], label: 'Days 3–5', title: 'Results start to show', meta: 'Botox · with Elena Ruiz, RN',
     body: [`<div class="row"><span>Hyaluronic serum<br><span class="mini">From Day 3: hydration</span></span><span class="pill">Shop</span></div>
       <div class="row"><span>Mineral SPF 46<br><span class="mini">Daily: protect results</span></span><span class="pill">Shop</span></div>
-      <div class="mini">Elena may earn a commission on these picks.</div>`] },
-  { tab: 'Day 76', open: [6], label: 'Rebook · due in 14 days', title: 'Time for your next visit', meta: 'Elena has openings this week',
+      <div class="mini">Company Med Spa may earn a commission on these picks.</div>`] },
+  { tab: 'Day 76', open: [6], label: 'Rebook · due in 14 days', title: 'Time for your next visit', meta: 'Openings this week',
     sms: 'Hi Maya, it\'s almost time for your next visit with Company Med Spa. Pick a time: fa.io/c/7Kq2',
     body: [`<div class="row" style="flex-wrap:wrap;justify-content:flex-start"><span class="pill">Thu 11:00</span><span class="pill on">Sat 2:00</span><span class="pill">Tue 4:30</span></div>
       <div class="cbtn">Book Sat, Jan 2 at 2:00 PM</div>`] }
 ];
 
 const $ = id => document.getElementById(id);
+const replay = el => { el.classList.remove('swap'); void el.offsetWidth; el.classList.add('swap'); };
 function render(i) {
   const s = STAGES[i], first = s.open[0];
   const steps = STEPS.map(([t, ic], n) => {
@@ -551,17 +614,18 @@ function render(i) {
   card.innerHTML = `<div class="card-top"><div class="tag"><span>Company Med Spa</span><span>Maya Chen</span></div>
     <div class="label">${s.label}</div><h3>${s.title}</h3><div class="meta">${s.meta}</div></div>
     <ul class="steps">${steps}</ul><p class="powered">Powered by FirstAccess.io</p>`;
-  card.classList.remove('swap'); void card.offsetWidth; card.classList.add('swap'); card.scrollTop = 0;
+  replay(card); card.scrollTop = 0;
   $('sms').hidden = !s.sms;
   if (s.sms) $('sms').innerHTML = `<small>Company Med Spa · text</small>${s.sms}`;
   $('note').textContent = s.tab;
-  $('sms').classList.remove('swap'); void $('sms').offsetWidth; $('sms').classList.add('swap');
+  replay($('sms'));
   const bar = $('bar'); bar.classList.remove('run'); void bar.offsetWidth; bar.classList.add('run');
 }
 // Autoplay through the visit; holds still for reduced-motion viewers and while hovered.
 const STAGE_MS = 3800;
+const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
 let cur = 0, timer = null;
-const play = () => { if (!timer && !matchMedia('(prefers-reduced-motion: reduce)').matches) timer = setInterval(() => render(cur = (cur + 1) % STAGES.length), STAGE_MS); };
+const play = () => { if (!timer && !still) timer = setInterval(() => render(cur = (cur + 1) % STAGES.length), STAGE_MS); };
 const hold = () => { clearInterval(timer); timer = null; };
 document.querySelector('.phone').addEventListener('mouseenter', hold);
 document.querySelector('.phone').addEventListener('mouseleave', () => { render(cur); play(); });
@@ -569,16 +633,16 @@ render(0); play();
 
 // Concierge feed: tasks arrive one by one, then the loop restarts. Reduced motion shows them all at once.
 const TASKS = [
-  ['Wrote aftercare for HydraFacial', 'From your notes, in your voice.', 'Waiting for you'],
-  ['Found 3 affiliate programs', 'For brands you already recommend. Applications drafted.', 'Waiting for you'],
-  ['Matched 4 picks to Botox', 'Timed to recovery. One retinol serum held back.', 'Waiting for you'],
-  ['Drafted a rebook note', 'Due in 14 days. Mentions their last visit.', 'Waiting for you']
+  ['Wrote prep for Fraxel', 'Pause retinol before the visit. In your voice.'],
+  ['Found 4 picks for HydraFacial aftercare', 'Conflict-checked. Programs found for 3 of them.'],
+  ['Drafted a reply to a Google review', 'A 5-star review from yesterday, in your voice.'],
+  ['Drafted a rebook note', 'Botox due in 14 days. Mentions their last visit.']
 ];
 const feed = $('feed');
 // All four tasks render up front so the panel's height never changes; only their state animates.
-feed.innerHTML = TASKS.map(([t, d, st]) => `<div class="task"><div class="row"><b>${t}</b><span class="wait">${st}</span></div><p>${d}</p></div>`).join('');
+feed.innerHTML = TASKS.map(([t, d]) => `<div class="task"><div class="row"><b>${t}</b><span class="wait">Waiting for you</span></div><p>${d}</p></div>`).join('');
 const tasks = [...feed.children];
-if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+if (!still) {
   let k = 0;
   const step = () => {
     if (k === tasks.length + 1) { tasks.forEach(t => t.classList.add('pending')); k = 0; } // hold one beat, then reset
@@ -589,28 +653,72 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
   step(); setInterval(step, 1800);
 }
 
-// Sticky phone CTA: shown only when neither the hero button nor the form is visible.
-const seen = new Set();
-const io = new IntersectionObserver(es => {
-  es.forEach(e => e.isIntersecting ? seen.add(e.target) : seen.delete(e.target));
-  $('sticky').classList.toggle('away', seen.size > 0);
-});
-io.observe(document.querySelector('.hero .cta-row')); io.observe($('join'));
-
-// Income estimate: inputs are the owner's own numbers.
-const money = n => '$' + Math.round(n).toLocaleString('en-US');
-const val = id => Math.max(0, parseFloat($(id).value) || 0);
-function calc() {
-  const v = val('c-visits'), retail = v * val('c-buy') / 100 * val('c-comm'),
-        add = v * val('c-add') / 100 * val('c-addv'), rebook = val('c-rebook') * val('c-ticket'),
-        total = retail + add + rebook;
-  $('o-retail').textContent = money(retail); $('o-add').textContent = money(add);
-  $('o-rebook').textContent = money(rebook); $('o-total').textContent = money(total);
-  $('o-vs').textContent = total > 99 ? `About ${Math.floor(total / 99)}× the $99 monthly plan.` : 'Less than the $99 monthly plan at these numbers.';
+// Text thread: what a client receives from the studio, one message at a time, then it starts over.
+const THREAD = [
+  { t: 'Text Message<br>Wed, Oct 14 · 9:41 AM', d: 'in', x: 'Hi Maya, you\'re booked with Company Med Spa for Sat, Oct 17 at 2:00 PM. Your visit card: <u>fa.io/c/7Kq2</u> Reply STOP to opt out.' },
+  { d: 'in', x: 'Before your visit: pause retinol from tonight. Your full prep list is on your card.' },
+  { d: 'out', x: 'Got it, thank you!' },
+  { t: 'Tue, Oct 20 · 10:02 AM', d: 'in', x: 'Day 3 after your visit. Here\'s what to expect today, plus your studio\'s picks for this stage: <u>fa.io/c/7Kq2</u>' },
+  { d: 'out', x: 'Just ordered the SPF 🙌' },
+  { t: 'Sat, Dec 19 · 9:00 AM', d: 'in', x: 'Hi Maya, it\'s almost time for your next visit. Pick a time that works: <u>fa.io/c/7Kq2</u>' },
+  { d: 'out', x: 'Booked Sat at 2. See you then!' }
+];
+const thread = $('thread');
+const addMsg = m => {
+  if (m.t) thread.insertAdjacentHTML('beforeend', `<p class="ts">${m.t}</p>`);
+  thread.insertAdjacentHTML('beforeend', `<p class="bub ${m.d}">${m.x}</p>`);
+};
+if (still) THREAD.forEach(addMsg);
+else {
+  let n = 0;
+  const next = () => {
+    if (n === THREAD.length + 2) { thread.innerHTML = ''; n = 0; } // hold the full thread for two beats
+    if (n < THREAD.length) addMsg(THREAD[n]);
+    n++;
+  };
+  next(); setInterval(next, 1700);
 }
-$('calc').addEventListener('input', calc); calc();
 
-// Waitlist: saves to the artifact's db when the viewer can write; otherwise says so plainly.
+// Steps of the visit cycle as tabs: a sample card for each, with a one-line caption under it.
+const row = (a, b, c, on) => `<div class="row"><span>${a}<br><span class="mini">${b}</span></span><span class="pill${on ? ' on' : ''}">${c}</span></div>`;
+const CH = [
+  { name: 'Prep', label: 'Your visit · 5 days to go', title: 'Getting ready for Fraxel',
+    body: '<div class="chk"><span class="box on"></span>Pause retinol and exfoliating acids</div><div class="chk"><span class="box on"></span>Skip waxing and self-tanner on the area</div><div class="chk"><span class="box"></span>Arrive with clean skin, no makeup</div>' },
+  { name: 'Aftercare', label: 'Day 3 after your visit', title: 'What to expect today',
+    body: '<div class="mini">Day 1 ✓ · Day 2 ✓</div><div class="row" style="border-left:2px solid var(--gold);padding-left:8px"><span><b>Day 3</b><br>Redness fades. Keep to a gentle cleanser and SPF.</span></div><div class="mini">Day 7 · Light exfoliation is fine again</div>' },
+  { name: 'Add-ons', label: 'Your visit · 5 days to go', title: 'Add to your visit',
+    body: row('Lip flip', 'Pairs well with Botox', 'Added', true) + row('LED therapy', '15 minutes, after your treatment', 'Add') },
+  { name: 'Product picks', label: 'Days 3–5 · Picks for your recovery', title: 'Recommended by your studio',
+    body: row('Hyaluronic serum', 'From Day 3: hydration', 'Shop') + row('Mineral SPF 46', 'Daily: protect results', 'Shop') + '<div class="mini">Company Med Spa may earn a commission on these picks.</div>' },
+  { name: 'Reviews', label: 'Thanks for coming in', title: 'How was your visit?',
+    body: '<div style="color:var(--gold);letter-spacing:3px;font-size:20px;text-align:center">★★★★★</div><div class="mini" style="text-align:center">Your words, tidied up by our review helper</div><div class="cbtn">Post to Google</div><div class="mini" style="text-align:center">Something not right? Tell the studio privately.</div>' },
+  { name: 'Rebooking', label: 'Rebook · due in 14 days', title: 'Time for your next visit',
+    body: '<div class="row" style="flex-wrap:wrap;justify-content:flex-start"><span class="pill">Thu 11:00</span><span class="pill on">Sat 2:00</span><span class="pill">Tue 4:30</span></div><div class="cbtn">Book Sat, Jan 2 at 2:00 PM</div>' },
+  { name: 'Tips', label: 'Thanks for coming in', title: 'Leave a tip',
+    body: '<div class="row" style="justify-content:flex-start;flex-wrap:wrap"><span class="pill">15%</span><span class="pill on">20%</span><span class="pill">25%</span><span class="pill">Custom</span></div><div class="cbtn">Tip with Venmo</div><div class="mini" style="text-align:center">or send with Zelle</div>' }
+];
+const chips = $('chips');
+chips.innerHTML = CH.map((c, i) => `<button class="chip" type="button" aria-pressed="${i === 0}" data-i="${i}">${c.name}${c.soon ? '<small>Soon</small>' : ''}</button>`).join('');
+function showCh(i) {
+  const c = CH[i];
+  chips.querySelectorAll('.chip').forEach((b, n) => b.setAttribute('aria-pressed', n === i));
+  const m = $('ch-mock');
+  m.innerHTML = `<div class="card-top"><div class="tag"><span>Company Med Spa</span><span>Visit card</span></div><div class="label">${c.label}</div><h3>${c.title}</h3></div>
+    <div class="step open"><div class="body" style="margin:0">${c.body}</div></div><p class="powered" style="margin:0">Powered by FirstAccess.io</p>`;
+  replay(m);
+}
+chips.addEventListener('click', e => { const b = e.target.closest('.chip'); if (b) showCh(+b.dataset.i); });
+showCh(0);
+
+
+// Every "Join the waitlist" opens the sign-up dialog; a #join link opens it on load too.
+const dlg = $('join');
+document.querySelectorAll('a[href="#join"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); dlg.showModal(); }));
+$('join-x').addEventListener('click', () => dlg.close());
+dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); }); // click on the backdrop closes
+if (location.hash === '#join') dlg.showModal();
+
+// Waitlist: saves to the artifact's db when the viewer can write; otherwise opens an email.
 // ponytail: artifact db only reaches signed-in org viewers; a public launch needs a real form backend.
 const SIGNUP_EMAIL = 'jomar@bowtiefunnel.com';
 const form = $('form'), msg = $('msg');
@@ -626,7 +734,7 @@ form.addEventListener('submit', async e => {
     if (!db || !uid) {
       // ponytail: mailto until a real form backend exists; some visitors have no mail app, so the address stays visible.
       const body = `Name: ${data.name}\nStudio: ${data.studio}\nEmail: ${data.email}\nCity: ${data.city}\nBooking system: ${data.booking}`;
-      location.href = `mailto:${SIGNUP_EMAIL}?subject=${encodeURIComponent('Founding spot: ' + data.studio)}&body=${encodeURIComponent(body)}`;
+      location.href = `mailto:${SIGNUP_EMAIL}?subject=${encodeURIComponent('Waitlist: ' + data.studio)}&body=${encodeURIComponent(body)}`;
       return show(`Your email app should open with your details filled in. Just hit send. If it doesn't open, email ${SIGNUP_EMAIL} with your studio name.`);
     }
     await db.doc('waitlist/' + uid).set({ ...data, at: new Date().toISOString() });
