@@ -219,8 +219,6 @@ section { padding-block: 72px }
   box-shadow: 0 1px 2px rgba(17,17,93,.05) }
 .chip[aria-pressed="true"] { background: var(--midnight); border-color: var(--midnight); color: #fff }
 .chip small { font-size: 11px; opacity: .7; margin-left: 4px }
-.ch-desc { max-width: 40em; min-height: 3.2em; margin: -8px auto 24px; text-align: center; color: var(--muted); font-size: 17px; text-wrap: balance }
-.ch-desc b { color: var(--ink); font-weight: 600 }
 .ch-stage { max-width: 860px; margin: 0 auto; border-radius: 30px; padding: 48px 20px; display: grid; place-items: center; overflow: hidden }
 .mock { width: min(330px, 100%); background: #fbfbfd; border-radius: 26px; padding: 14px; display: grid; gap: 10px; font-size: 13px;
   box-shadow: 0 0 0 1px #dfe1ec, 0 30px 70px rgba(17,17,93,.18) }
@@ -459,10 +457,9 @@ input, select { font: 15px var(--sans); color: var(--ink); background: #fff; bor
     <div class="wrap">
       <div class="center-head">
         <h2>Every visit, start to finish</h2>
-        <p>Every appointment gets its own Concierge Link, from booking to rebooking. Switch on the steps you want.</p>
+        <p>Every appointment gets one Concierge Link with prep, aftercare, add&#8209;ons, your product picks, reviews, rebooking and tips, and you switch on the steps you want.</p>
       </div>
       <div class="chips" id="chips" role="group" aria-label="Steps of the visit"></div>
-      <p class="ch-desc" id="ch-desc" aria-live="polite"></p>
       <div class="ch-stage glow-b"><div class="mock" id="ch-mock" aria-live="polite"></div></div>
     </div>
   </section>
@@ -685,19 +682,19 @@ else {
 // Steps of the visit cycle as tabs: a sample card for each, with a one-line caption under it.
 const row = (a, b, c, on) => `<div class="row"><span>${a}<br><span class="mini">${b}</span></span><span class="pill${on ? ' on' : ''}">${c}</span></div>`;
 const CH = [
-  { name: 'Prep', desc: '<b>Clients show up ready.</b> Days before the visit, they get a checklist for their service, like pausing retinol or skipping self-tanner, so fewer appointments get cut short or rescheduled.', label: 'Your visit · 5 days to go', title: 'Getting ready for Fraxel',
+  { name: 'Prep', label: 'Your visit · 5 days to go', title: 'Getting ready for Fraxel',
     body: '<div class="chk"><span class="box on"></span>Pause retinol and exfoliating acids</div><div class="chk"><span class="box on"></span>Skip waxing and self-tanner on the area</div><div class="chk"><span class="box"></span>Arrive with clean skin, no makeup</div>' },
-  { name: 'Aftercare', desc: '<b>Fewer “is this normal?” texts.</b> After the visit, the link shows what to expect each day of recovery and what to avoid, written once per service and approved by you.', label: 'Day 3 after your visit', title: 'What to expect today',
+  { name: 'Aftercare', label: 'Day 3 after your visit', title: 'What to expect today',
     body: '<div class="mini">Day 1 ✓ · Day 2 ✓</div><div class="row" style="border-left:2px solid var(--gold);padding-left:8px"><span><b>Day 3</b><br>Redness fades. Keep to a gentle cleanser and SPF.</span></div><div class="mini">Day 7 · Light exfoliation is fine again</div>' },
-  { name: 'Add-ons', desc: '<b>A bigger ticket, asked at the right time.</b> Before the visit, clients see extras that pair with their service and add them in one tap. You choose which add-ons to offer.', label: 'Your visit · 5 days to go', title: 'Add to your visit',
+  { name: 'Add-ons', label: 'Your visit · 5 days to go', title: 'Add to your visit',
     body: row('Lip flip', 'Pairs well with Botox', 'Added', true) + row('LED therapy', '15 minutes, after your treatment', 'Add') },
-  { name: 'Product picks', desc: '<b>Your recommendations, your commission.</b> The products you’d tell them to use show up on the right day of recovery, with your affiliate links or the products you stock. Each pick is conflict-checked and disclosed, and the commission is 100% yours.', label: 'Days 3–5 · Picks for your recovery', title: 'Recommended by your studio',
+  { name: 'Product picks', label: 'Days 3–5 · Picks for your recovery', title: 'Recommended by your studio',
     body: row('Hyaluronic serum', 'From Day 3: hydration', 'Shop') + row('Mineral SPF 46', 'Daily: protect results', 'Shop') + '<div class="mini">Company Med Spa may earn a commission on these picks.</div>' },
-  { name: 'Reviews', desc: '<b>More Google reviews, honestly earned.</b> Every client gets the same easy way to post, starting from their own words. Anyone unhappy also gets a private line to you.', label: 'Thanks for coming in', title: 'How was your visit?',
+  { name: 'Reviews', label: 'Thanks for coming in', title: 'How was your visit?',
     body: '<div style="color:var(--gold);letter-spacing:3px;font-size:20px;text-align:center">★★★★★</div><div class="mini" style="text-align:center">Your words, tidied up by our review helper</div><div class="cbtn">Post to Google</div><div class="mini" style="text-align:center">Something not right? Tell the studio privately.</div>' },
-  { name: 'Rebooking', desc: '<b>The next visit, booked with you.</b> When their service is due again, clients get a reminder with open times, timed to how long that service lasts.', label: 'Rebook · due in 14 days', title: 'Time for your next visit',
+  { name: 'Rebooking', label: 'Rebook · due in 14 days', title: 'Time for your next visit',
     body: '<div class="row" style="flex-wrap:wrap;justify-content:flex-start"><span class="pill">Thu 11:00</span><span class="pill on">Sat 2:00</span><span class="pill">Tue 4:30</span></div><div class="cbtn">Book Sat, Jan 2 at 2:00 PM</div>' },
-  { name: 'Tips', desc: '<b>The tip they meant to leave.</b> Clients without cash can tip in a tap with Venmo or Zelle. Tips go straight to you, and First Access never touches the money.', label: 'Thanks for coming in', title: 'Leave a tip',
+  { name: 'Tips', label: 'Thanks for coming in', title: 'Leave a tip',
     body: '<div class="row" style="justify-content:flex-start;flex-wrap:wrap"><span class="pill">15%</span><span class="pill on">20%</span><span class="pill">25%</span><span class="pill">Custom</span></div><div class="cbtn">Tip with Venmo</div><div class="mini" style="text-align:center">or send with Zelle</div>' }
 ];
 const chips = $('chips');
@@ -705,7 +702,6 @@ chips.innerHTML = CH.map((c, i) => `<button class="chip" type="button" aria-pres
 function showCh(i) {
   const c = CH[i];
   chips.querySelectorAll('.chip').forEach((b, n) => b.setAttribute('aria-pressed', n === i));
-  $('ch-desc').innerHTML = c.desc;
   const m = $('ch-mock');
   m.innerHTML = `<div class="card-top"><div class="tag"><span>Company Med Spa</span><span>Concierge Link</span></div><div class="label">${c.label}</div><h3>${c.title}</h3></div>
     <div class="step open"><div class="body" style="margin:0">${c.body}</div></div><p class="powered" style="margin:0">Powered by First Access · Your Personal Concierge</p>`;
