@@ -228,6 +228,13 @@ section { padding-block: 72px }
 .statement { text-align: center; display: grid; justify-items: center; gap: 22px }
 .statement h2 { font-size: clamp(32px, 4.4vw, 56px); max-width: 16em }
 .statement h2 span { color: #8a8da3 }
+/* a band of Midnight sweeps across the grey line, then rests */
+@media (prefers-reduced-motion: no-preference) {
+  .statement h2 span { color: transparent; -webkit-background-clip: text; background-clip: text; background-size: 250% 100%;
+    background-image: linear-gradient(90deg, #8a8da3 0 38%, var(--midnight) 50%, #8a8da3 62% 100%);
+    animation: shine 4.5s ease-in-out infinite }
+}
+@keyframes shine { 0% { background-position: 100% 0 } 55%, 100% { background-position: 0 0 } }
 .statement p { color: var(--muted); font-size: 18px; max-width: 36em }
 
 /* trust cards */
