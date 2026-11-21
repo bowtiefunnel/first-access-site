@@ -742,7 +742,7 @@ form.addEventListener('submit', async e => {
     if ((await r.text()).trim() !== 'ok') throw new Error('not saved');
     form.querySelectorAll('input,select,button').forEach(el => el.disabled = true);
     btn.textContent = "You're on the list";
-    show(`You're on the list, ${data.name.split(' ')[0]}. We'll email ${data.email} before setup opens.`);
+    show(`You're in. We'll email you when your spot opens. Questions before then? Write to ${SIGNUP_EMAIL}.`);
   } catch {
     btn.disabled = false; btn.textContent = 'Join the waitlist';
     show(`That didn't go through. Try again, or email ${SIGNUP_EMAIL} with your studio name.`);
