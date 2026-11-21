@@ -287,6 +287,7 @@ label { display: grid; gap: 6px; font-size: 13px; color: var(--muted) }
 input, select { font: 15px var(--sans); color: var(--ink); background: #fff; border: 1px solid #d9dbe6; border-radius: 12px; padding: 12px 14px; width: 100%; min-width: 0 }
 #form .btn { justify-self: start }
 .form-note { font-size: 12.5px; color: var(--muted) }
+.hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%) } /* honeypot: hidden from people, filled by bots */
 .msg { font-size: 14px; padding: 12px 14px; border-radius: 12px; background: var(--peri) }
 
 @media (max-width: 900px) {
@@ -557,6 +558,7 @@ input, select { font: 15px var(--sans); color: var(--ink); background: #fff; bor
       <label for="f-email">Email<input id="f-email" name="email" type="email" autocomplete="email" required></label>
       <label for="f-city">City<input id="f-city" name="city" autocomplete="address-level2"></label>
     </div>
+    <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
     <label for="f-booking">Booking system
       <select id="f-booking" name="booking" required>
         <option value="">Choose one</option>
@@ -724,30 +726,26 @@ $('join-x').addEventListener('click', () => dlg.close());
 dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); }); // click on the backdrop closes
 if (location.hash === '#join') dlg.showModal();
 
-// Waitlist: saves to the artifact's db when the viewer can write; otherwise opens an email.
-// ponytail: artifact db only reaches signed-in org viewers; a public launch needs a real form backend.
+// Waitlist: posts to the Apps Script on the "First Access Wait List" Sheet. Success shows only after it replies "ok".
+const WAITLIST_URL = 'https://script.google.com/macros/s/AKfycbwHKTvRS6j-EO-0vWaL1FapDRW5B845D3lqCyLeWCbhoLUFJ-2gtkAc_6DjVOy3qmnrAA/exec';
 const SIGNUP_EMAIL = 'jomar@bowtiefunnel.com';
-const form = $('form'), msg = $('msg');
+const form = $('form'), msg = $('msg'), btn = form.querySelector('button[type=submit]');
 form.addEventListener('submit', async e => {
   e.preventDefault();
   if (!form.reportValidity()) return;
   const data = Object.fromEntries(new FormData(form));
-  const show = t => { msg.textContent = t; msg.hidden = false; };
+  const show = t => { msg.textContent = t; msg.hidden = false; msg.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); };
+  btn.disabled = true; btn.textContent = 'Sending…';
   try {
-    const db = window.claude ? await window.claude.use('db') : null;
-    const user = window.claude ? await window.claude.use('user') : null;
-    const uid = user && await user.id();
-    if (!db || !uid) {
-      // ponytail: mailto until a real form backend exists; some visitors have no mail app, so the address stays visible.
-      const body = `Name: ${data.name}\nStudio: ${data.studio}\nEmail: ${data.email}\nCity: ${data.city}\nBooking system: ${data.booking}`;
-      location.href = `mailto:${SIGNUP_EMAIL}?subject=${encodeURIComponent('Waitlist: ' + data.studio)}&body=${encodeURIComponent(body)}`;
-      return show(`Your email app should open with your details filled in. Just hit send. If it doesn't open, email ${SIGNUP_EMAIL} with your studio name.`);
-    }
-    await db.doc('waitlist/' + uid).set({ ...data, at: new Date().toISOString() });
+    // A plain string body is sent as text/plain, so the browser skips the CORS preflight Apps Script can't answer.
+    const r = await fetch(WAITLIST_URL, { method: 'POST', body: JSON.stringify(data) });
+    if ((await r.text()).trim() !== 'ok') throw new Error('not saved');
     form.querySelectorAll('input,select,button').forEach(el => el.disabled = true);
+    btn.textContent = "You're on the list";
     show(`You're on the list, ${data.name.split(' ')[0]}. We'll email ${data.email} before setup opens.`);
-  } catch (err) {
-    show('That didn\'t save. Check your connection and try again.');
+  } catch {
+    btn.disabled = false; btn.textContent = 'Join the waitlist';
+    show(`That didn't go through. Try again, or email ${SIGNUP_EMAIL} with your studio name.`);
   }
 });
 </script>
